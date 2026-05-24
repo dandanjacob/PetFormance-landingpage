@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>PetFormance · Marketing veterinário com qualidade</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='6' fill='%231F8FD4'/><ellipse cx='6' cy='10' rx='2' ry='2.6' fill='white'/><ellipse cx='18' cy='10' rx='2' ry='2.6' fill='white'/><ellipse cx='9.5' cy='5.5' rx='1.8' ry='2.3' fill='white'/><ellipse cx='14.5' cy='5.5' rx='1.8' ry='2.3' fill='white'/><path d='M12 11.5c3.2 0 5.6 2.6 5.6 5.4 0 1.7-1.4 2.6-3 2.6-1.1 0-1.7-.5-2.6-.5s-1.5.5-2.6.5c-1.6 0-3-.9-3-2.6 0-2.8 2.4-5.4 5.6-5.4Z' fill='white'/></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -16,7 +17,25 @@
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
+<!-- 1. Tweaks panel (dev tool) -->
 <script type="text/babel" src="tweaks-panel.jsx"></script>
+
+<!-- 2. Strings & contact (shared by all pages) -->
+<script type="text/babel" src="strings.js"></script>
+
+<!-- 3. Shared components: icons → ui → nav → footer -->
+<script type="text/babel" src="components/icons.jsx"></script>
+<script type="text/babel" src="components/ui.jsx"></script>
+<script type="text/babel" src="components/nav.jsx"></script>
+<script type="text/babel" src="components/footer.jsx"></script>
+
+<!-- 4. Pages -->
+<script type="text/babel" src="pages/home.jsx"></script>
+<script type="text/babel" src="pages/about.jsx"></script>
+<script type="text/babel" src="pages/services.jsx"></script>
+<script type="text/babel" src="pages/results.jsx"></script>
+
+<!-- 5. Router / entry -->
 <script type="text/babel" src="app.jsx"></script>
 </body>
 </html>

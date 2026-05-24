@@ -1,0 +1,43 @@
+/* global React, S, WA, PawIcon, ArrowIcon, CtaRow, PageHero */
+const { useEffect } = React;
+
+/* Placeholder — conteúdo a ser descrito pelo cliente */
+function ResultsPage({ t }) {
+  useEffect(() => {
+    const els = document.querySelectorAll("[data-reveal]");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <>
+      <div className="paws" aria-hidden="true">
+        <PawIcon size={200} /><PawIcon size={260} /><PawIcon size={180} />
+      </div>
+
+      <section className="inner-page">
+        <PageHero eyebrow={S.results.eyebrow} title={S.results.title}
+          subtitle="Cases reais, números reais. Veja o que a PetFormance fez por clínicas como a sua." />
+
+        {/* Os 3 cards serão adicionados quando o conteúdo for descrito */}
+        <div className="results-grid" data-reveal>
+          {[1, 2, 3].map(n => (
+            <div key={n} className="result-card">
+              <div className="result-card__placeholder">
+                <span>Case {n}</span>
+                <p>Conteúdo em breve</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <CtaRow ctaStyle={t.ctaStyle} big />
+      </section>
+    </>
+  );
+}

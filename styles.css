@@ -143,9 +143,22 @@ button {
   gap: 10px;
 }
 
+/* Logo: crop the ~25% empty canvas around the drawing */
+.nav__mark-wrap {
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border-radius: 10px;
+}
+
 .nav__mark {
-  width: 34px;
-  height: 34px;
+  /* Scale up to eat the whitespace: drawing ~75% wide, centered slightly top-left */
+  width: 145%;
+  height: 145%;
+  margin: -12% 0 0 -8%;
+  object-fit: contain;
+  display: block;
 }
 
 .nav__word {
@@ -336,7 +349,8 @@ button {
 .logo-stage--gif {
   width: 580px;
   height: 580px;
-  margin-bottom: 0;
+  margin-bottom: -145px;
+  clip-path: inset(0 0 25% 0);
 }
 
 .logo-halo {
@@ -1311,4 +1325,555 @@ button {
   }
 
   /* Social  → middle */
+}
+
+/* ============ Inner pages (Sobre, Serviços, Resultados) ============ */
+.inner-page {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 80px 32px 40px;
+}
+
+.inner-page--alt {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--brand) 4%, white), white);
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.inner-page--alt > * {
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+/* ---- Page hero (inner pages) ---- */
+.page-hero {
+  text-align: center;
+  margin-bottom: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.page-hero__title {
+  font-size: clamp(32px, 4.5vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin: 0;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.page-hero__title::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  background: var(--brand);
+  border-radius: 999px;
+  margin: 18px auto 0;
+}
+
+.page-hero__subtitle {
+  font-size: clamp(15px, 1.6vw, 18px);
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 600px;
+  line-height: 1.6;
+  text-wrap: balance;
+}
+
+/* ============ About · Team cards ============ */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin: 0 auto 64px;
+}
+
+.team-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform .22s, box-shadow .22s;
+}
+
+.team-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.team-card__photo {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: linear-gradient(135deg, color-mix(in oklab, var(--brand) 18%, white), color-mix(in oklab, var(--brand) 6%, white));
+}
+
+.team-card__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.team-card__photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--brand);
+  opacity: 0.5;
+}
+
+.team-card__body {
+  padding: 28px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.team-card__name {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.team-card__name--blue { color: var(--brand); }
+.team-card__name--ink  { color: var(--ink); }
+.team-card__name--full { font-size: 0.75em; font-weight: 700; color: var(--ink-soft); display: block; margin-top: 4px; }
+
+.team-card__titles {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.team-card__titles li {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brand-deep);
+  letter-spacing: 0.01em;
+}
+
+.team-card__bio {
+  margin: 0;
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  flex: 1;
+}
+
+/* ============ Services · Platform cards ============ */
+.acard--platform {
+  border-color: color-mix(in oklab, var(--pcolor, var(--brand)) 30%, transparent);
+}
+
+.acard--platform:hover,
+.acard--platform:focus-visible {
+  border-color: var(--pcolor, var(--brand));
+  box-shadow: 0 8px 24px color-mix(in oklab, var(--pcolor, var(--brand)) 24%, transparent);
+}
+
+/* ============ Services · Step carousel ============ */
+.steps-carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 8px 0 40px;
+}
+
+.steps-track {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.step-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 32px 24px;
+  box-shadow: var(--shadow-sm);
+  width: 200px;
+  min-width: 160px;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform .22s, box-shadow .22s, border-color .22s;
+  opacity: 0.55;
+  transform: scale(0.96);
+}
+
+.step-card--active {
+  opacity: 1;
+  transform: scale(1);
+  border-color: color-mix(in oklab, var(--brand) 45%, transparent);
+  box-shadow: var(--shadow-md);
+}
+
+.step-card__num {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--brand);
+  background: rgba(31, 143, 212, 0.1);
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  align-self: flex-start;
+}
+
+.step-card__title {
+  font-size: 17px;
+  font-weight: 800;
+  margin: 0;
+  color: var(--ink);
+}
+
+.step-card__body {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.steps-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.steps-btn {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: var(--ink);
+  transition: background .18s, border-color .18s, color .18s;
+  font-family: inherit;
+}
+
+.steps-btn:hover {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: white;
+}
+
+.steps-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.steps-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: var(--line);
+  cursor: pointer;
+  transition: background .18s, transform .18s;
+  padding: 0;
+}
+
+.steps-dot--active {
+  background: var(--brand);
+  transform: scale(1.25);
+}
+
+/* ============ Services · Mosaic ============ */
+.mosaic {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 180px);
+  grid-template-areas:
+    "a a e f h"
+    "b c e g h"
+    "b d e i i";
+  gap: 10px;
+  margin: 0 auto 64px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.mosaic-item {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: default;
+  transition: filter .22s;
+}
+
+.mosaic-item:hover { filter: brightness(1.08); }
+
+.mosaic-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 60%);
+}
+
+.mosaic-item__label {
+  position: relative;
+  z-index: 1;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+/* ============ Results · Cards ============ */
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 64px;
+}
+
+.result-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--shadow-md);
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.result-card__placeholder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+.result-card__placeholder span {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--brand);
+}
+
+/* ============ Responsive – new pages ============ */
+@media (max-width: 980px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mosaic {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 140px);
+    grid-template-areas:
+      "a a e"
+      "b c e"
+      "b d e"
+      "f g h"
+      "i i h";
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .steps-track {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+  }
+  .steps-track::-webkit-scrollbar { display: none; }
+}
+
+@media (max-width: 600px) {
+  .inner-page { padding: 48px 16px 32px; }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .mosaic {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 120px);
+    grid-template-areas:
+      "a a"
+      "b e"
+      "c e"
+      "d e"
+      "f g"
+      "h i";
+  }
+
+  .step-card { width: 160px; padding: 22px 16px; }
+}
+
+/* ============ "Info" badge — pulse para chamar atenção ============ */
+@keyframes badge-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--brand) 50%, transparent); }
+  60%       { box-shadow: 0 0 0 5px transparent; }
+}
+
+.acard__info {
+  animation: badge-pulse 2.4s ease-in-out infinite;
+}
+
+.acard:hover .acard__info,
+.acard:focus-visible .acard__info {
+  animation: none;
+}
+
+/* ============ Interact hint text ============ */
+.interact-hint {
+  font-size: 13px;
+  color: var(--ink-soft);
+  text-align: center;
+  margin: 0 0 8px;
+  letter-spacing: 0.01em;
+  opacity: 0.75;
+}
+
+/* ============ Mosaic clickable ============ */
+.mosaic-item {
+  cursor: pointer;
+  user-select: none;
+}
+
+.mosaic-item__plus {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 18px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  line-height: 1;
+  transition: opacity .18s, transform .18s;
+}
+
+.mosaic-item:hover .mosaic-item__plus {
+  opacity: 1;
+  transform: scale(1.2);
+  color: white;
+}
+
+/* ============ Mosaic modal (fade, sem flip) ============ */
+.mmodal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background: rgba(10, 15, 20, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: amodal-bg-in 0.25s ease;
+}
+
+.mmodal__box {
+  position: relative;
+  width: min(480px, 92vw);
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(10, 15, 20, 0.3);
+  animation: mmodal-in 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes mmodal-in {
+  from { transform: scale(0.88) translateY(16px); opacity: 0; }
+  to   { transform: scale(1) translateY(0);        opacity: 1; }
+}
+
+.mmodal__strip {
+  height: 6px;
+  width: 100%;
+}
+
+.mmodal__content {
+  padding: 28px 32px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mmodal__close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--ink-soft);
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: background .15s, color .15s;
+  font-family: inherit;
+}
+.mmodal__close:hover { background: var(--surface-2); color: var(--ink); }
+
+.mmodal__title {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  margin: 0;
+  color: var(--ink);
+  padding-right: 32px;
+}
+
+.mmodal__body {
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ============ Carousel — snap scroll on mobile ============ */
+.steps-track {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.step-card {
+  scroll-snap-align: center;
+}
 }

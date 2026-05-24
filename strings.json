@@ -1,0 +1,88 @@
+{
+  "pt": {
+    "page_title": "PetFormance · Marketing veterinário com qualidade",
+    "nav": {
+      "home": "PetFormance",
+      "about": "Sobre nós",
+      "services": "Serviços",
+      "results": "Resultados",
+      "contact": "Contato"
+    },
+    "hero": {
+      "tagline": "PetFormance · Marketing para clínicas e profissionais pet",
+      "headline": "Você precisa de marketing veterinário?",
+      "scroll_hint": "role para conhecer"
+    },
+    "benefits": [
+      {
+        "title": "Crescimento que decola",
+        "body": "Estratégias focadas em resultado: mais consultas agendadas, mais tutores fiéis, mais autoridade no seu nicho."
+      },
+      {
+        "title": "Qualidade reconhecida",
+        "body": "Cuidamos da sua marca como você cuida dos pacientes: com atenção, método e empatia. Resultado que se vê — e que tutores comentam."
+      },
+      {
+        "title": "Premiação como rotina",
+        "body": "Mais de 80 clínicas, hospitais e lojas pet atendidas — campanhas que ganharam prêmios e, mais importante, ganharam clientes."
+      }
+    ],
+    "cta": {
+      "contact_button": "Entre em contato conosco!",
+      "contact_hint": "Resposta em menos de 24h úteis · sem compromisso",
+      "final_headline": "Pronto para fazer sua clínica latir mais alto?",
+      "modal_specialist": "Falar com um especialista"
+    },
+    "modal": {
+      "await_hint": "Aguarde a virada…",
+      "default_pitch": "Por que importa para você"
+    },
+    "stats": [
+      { "number": "+80", "label": "clientes atendidos" },
+      { "number": "4,9", "suffix": "/5", "label": "satisfação média" },
+      { "number": "3,2x", "label": "retorno médio em mídia" },
+      { "number": "6 anos", "label": "de nicho veterinário" }
+    ],
+    "audience": {
+      "eyebrow": "Quem atendemos?",
+      "title": "Marketing sob medida para cada cantinho do universo pet.",
+      "cards": [
+        {
+          "label": "Clínica Veterinária",
+          "pitch": "Por que importa para você",
+          "blurb": "Tutor escolhe clínica por proximidade e confiança. Marketing local certo coloca você no topo das buscas, lota horários ociosos da agenda e transforma uma consulta em vínculo de anos."
+        },
+        {
+          "label": "Hospital Veterinário",
+          "pitch": "Por que importa para você",
+          "blurb": "Quando o pet adoece de madrugada, ninguém pesquisa — abre o primeiro nome que lembra. Sua marca precisa estar gravada antes da emergência: presença, conteúdo e SEO o ano inteiro."
+        },
+        {
+          "label": "Veterinário Domiciliar",
+          "pitch": "Por que importa para você",
+          "blurb": "Seu diferencial é o cuidado dentro da casa do tutor. Comunicar isso bem, bairro a bairro, é o que separa o profissional ocupado do profissional indicado."
+        },
+        {
+          "label": "Clínica de Especialidades",
+          "pitch": "Por que importa para você",
+          "blurb": "Tutores e veterinários referenciadores precisam confiar na sua técnica. Construímos autoridade com produção médica séria, conteúdo educativo e relacionamento com a rede que indica."
+        },
+        {
+          "label": "Lojas Pet",
+          "pitch": "Por que importa para você",
+          "blurb": "A próxima sacola de ração é uma busca a um clique. Vencemos na conveniência, no carinho e na recorrência — transformando comprador eventual em cliente fiel."
+        }
+      ]
+    },
+    "footer": {
+      "nav_heading": "Navegar",
+      "contact_heading": "Contato",
+      "email": "contato@petformance.com.br",
+      "phone": "+55 (27) 99635-3150",
+      "social_heading": "Social",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn",
+      "legal": "PetFormance · Marketing veterinário com qualidade."
+    }
+  }
+}
