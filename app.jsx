@@ -142,12 +142,12 @@ function AnimatedLogo({ src, spin }) {
 
 /* ---------- Benefit Card ---------- */
 
-function BenefitCard({ icon, title, body, delay = 0, featured = false, ...rest }) {
+function BenefitCard({ icon, title, body, delay = 0, featured = false, style: extraStyle, ...rest }) {
   return (
     <article
       {...rest}
       className={`bcard ${featured ? "bcard--featured" : ""}`}
-      style={{ animationDelay: `${delay}s` }}>
+      style={{ animationDelay: `${delay}s`, ...extraStyle }}>
       
       <div className="bcard__icon">{icon}</div>
       <h3 className="bcard__title">{title}</h3>
@@ -158,9 +158,9 @@ function BenefitCard({ icon, title, body, delay = 0, featured = false, ...rest }
 
 /* ---------- Audience grid card ---------- */
 
-function AudienceCard({ icon, label, index, onOpen }) {
+function AudienceCard({ icon, label, index, onOpen, ...rest }) {
   return (
-    <div className="aslot">
+    <div className="aslot" {...rest}>
       <button
         type="button"
         className="acard"
@@ -240,6 +240,17 @@ function App() {
   const [t, setTweak] = useTweaks(TWEAKS);
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = useCallback(() => setMenuOpen(false), []);
+
+  useEffect(() => {
+    const els = document.querySelectorAll("[data-reveal]");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
 
   const palettes = {
     default: { brand: "#1F8FD4", brandDeep: "#0B5A8A", accent: "#1F8FD4", surface: "#F4F5F6", ink: "#0A0F14" },
@@ -373,11 +384,11 @@ function App() {
           </div>
         </div>
 
-        <p className="hero__tag">{t.tagline}</p>
+        <p className="hero__tag" data-reveal>{t.tagline}</p>
 
-        <h1 className="hero__headline">{t.headlineCopy}</h1>
+        <h1 className="hero__headline" data-reveal style={{"--reveal-delay":"0.1s"}}>{t.headlineCopy}</h1>
 
-        <div className="hero__scroll">
+        <div className="hero__scroll" data-reveal style={{"--reveal-delay":"0.2s"}}>
           <span>role para conhecer</span>
           <div className="hero__scroll-line" />
         </div>
@@ -386,28 +397,33 @@ function App() {
       {/* BENEFIT CARDS */}
       <section className="benefits" data-screen-label="03 Home · Benefícios">
         <BenefitCard
+          data-reveal
           delay={0}
           icon={<RocketIcon size={108} strokeWidth={2.4} />}
           title="Crescimento que decola"
           body="Estratégias focadas em resultado: mais consultas agendadas, mais tutores fiéis, mais autoridade no seu nicho." />
-        
+
         <BenefitCard
           featured
+          data-reveal
+          style={{"--reveal-delay":"0.15s"}}
           delay={0.3}
           icon={<div className="stars-row">{[0, 1, 2, 3, 4].map((i) => <StarIcon key={i} size={42} />)}</div>}
           title="Qualidade reconhecida"
           body="Cuidamos da sua marca como você cuida dos pacientes: com atenção, método e empatia. Resultado que se vê — e que tutores comentam." />
-        
+
         <BenefitCard
+          data-reveal
+          style={{"--reveal-delay":"0.3s"}}
           delay={0.6}
           icon={<TrophyIcon size={108} strokeWidth={2.4} />}
           title="Premiação como rotina"
           body="Mais de 80 clínicas, hospitais e lojas pet atendidas — campanhas que ganharam prêmios e, mais importante, ganharam clientes." />
-        
+
       </section>
 
       {/* CTA 1 */}
-      <div className="cta-row" id="contato">
+      <div className="cta-row" id="contato" data-reveal>
         <button className={`cta cta--${t.ctaStyle}`} type="button">
           <span>Entre em contato conosco!</span>
           <ArrowIcon />
@@ -417,7 +433,7 @@ function App() {
 
       {/* STATS */}
       {t.showStats &&
-      <section className="stats" aria-label="Indicadores" id="resultados">
+      <section className="stats" aria-label="Indicadores" id="resultados" data-reveal>
           <div className="stat"><div className="stat__num">+80</div><div className="stat__lbl">clientes atendidos</div></div>
           <div className="stat__sep" />
           <div className="stat"><div className="stat__num">4,9<span>/5</span></div><div className="stat__lbl">satisfação média</div></div>
@@ -430,14 +446,14 @@ function App() {
 
       {/* QUEM ATENDEMOS */}
       <section className="audience" id="servicos" data-screen-label="04 Home · Quem atendemos">
-        <div className="audience__head">
+        <div className="audience__head" data-reveal>
           <div className="audience__eyebrow"><PawIcon size={14} /> Quem atendemos?</div>
           <h2 className="audience__title">Marketing sob medida para cada cantinho do universo pet.</h2>
         </div>
 
         <div className="audience__grid">
           {audiences.map((a, i) =>
-          <AudienceCard key={i} index={i} icon={a.icon} label={a.label} onOpen={openModal} />
+          <AudienceCard key={i} index={i} icon={a.icon} label={a.label} onOpen={openModal} data-reveal style={{"--reveal-delay": `${i * 0.08}s`}} />
           )}
         </div>
       </section>
@@ -452,7 +468,7 @@ function App() {
       }
 
       {/* CTA 2 */}
-      <div className="cta-row cta-row--final">
+      <div className="cta-row cta-row--final" data-reveal>
         <h3 className="cta-row__big">Pronto para fazer sua clínica latir mais alto?</h3>
         <button className={`cta cta--${t.ctaStyle} cta--lg`} type="button">
           <span>Entre em contato conosco!</span>
