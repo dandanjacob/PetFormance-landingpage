@@ -325,7 +325,7 @@ function App() {
       {/* NAVBAR */}
       <header className="nav" data-screen-label="01 Home · Nav">
         <a href="#top" className="nav__brand">
-          <img src="assets/petformance-logo.png" alt="" className="nav__mark" />
+          <img src="assets/logo-melhorada.png" alt="" className="nav__mark" />
           <span className="nav__word"><strong>Pet</strong>Formance</span>
         </a>
         <nav className="nav__links">
