@@ -41,7 +41,7 @@ function Nav({ currentPage, onNavigate }) {
           <a href={WA} target="_blank" rel="noopener noreferrer" className="nav__cta">
             <PhoneIcon size={16} /> <span className="nav__cta-label">{S.nav.contact}</span>
           </a>
-          <button className="nav__burger" aria-label="Menu" onClick={() => setMenuOpen(true)}>
+          <button className="nav__burger" aria-label={S.a11y.menu_open} onClick={() => setMenuOpen(true)}>
             <MenuIcon />
           </button>
         </div>
@@ -50,7 +50,7 @@ function Nav({ currentPage, onNavigate }) {
       {menuOpen &&
         <div className="mmenu" onClick={closeMenu}>
           <div className="mmenu__panel" onClick={e => e.stopPropagation()}>
-            <button className="mmenu__close" aria-label="Fechar" onClick={closeMenu}><CloseIcon /></button>
+            <button className="mmenu__close" aria-label={S.a11y.menu_close} onClick={closeMenu}><CloseIcon /></button>
             <nav className="mmenu__links">
               {links.map(l =>
                 <a key={l.key} href={l.hash} onClick={(e) => go(e, l.key, l.hash)}>{l.label}</a>

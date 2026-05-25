@@ -92,7 +92,7 @@ function HomePage({ t }) {
         <div className="audience__head" data-reveal>
           <div className="audience__eyebrow"><PawIcon size={14} /> {S.audience.eyebrow}</div>
           <h2 className="audience__title">{S.audience.title}</h2>
-          <p className="interact-hint">Passe o mouse ou clique em cada ícone para saber mais ↓</p>
+          <p className="interact-hint">{S.audience.interact_hint}</p>
         </div>
         <div className="audience__grid">
           {audiences.map((a, i) =>

@@ -22,15 +22,15 @@ function ResultsPage({ t }) {
 
       <section className="inner-page">
         <PageHero eyebrow={S.results.eyebrow} title={S.results.title}
-          subtitle="Cases reais, números reais. Veja o que a PetFormance fez por clínicas como a sua." />
+          subtitle={S.results.subtitle} />
 
         {/* Os 3 cards serão adicionados quando o conteúdo for descrito */}
         <div className="results-grid" data-reveal>
           {[1, 2, 3].map(n => (
             <div key={n} className="result-card">
               <div className="result-card__placeholder">
-                <span>Case {n}</span>
-                <p>Conteúdo em breve</p>
+                <span>{S.results.case_label} {n}</span>
+                <p>{S.results.placeholder}</p>
               </div>
             </div>
           ))}

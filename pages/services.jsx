@@ -29,7 +29,7 @@ function PlatformModal({ data, closing, onClose }) {
         </div>
         <div className={`amodal__face amodal__face--back ${showBack ? "" : "is-hidden"}`}
           style={{ background: `linear-gradient(140deg, ${data.color} 0%, color-mix(in oklab, ${data.color} 60%, black) 100%)` }}>
-          <div className="amodal__back-eyebrow">Identidade Visual</div>
+          <div className="amodal__back-eyebrow">{S.modal.platform_eyebrow}</div>
           <h4 className="amodal__back-title">{data.name}</h4>
           <p className="amodal__blurb">{data.blurb}</p>
           <a href={WA} target="_blank" rel="noopener noreferrer" className="amodal__cta">
@@ -67,31 +67,20 @@ function StepsCarousel({ steps }) {
         ))}
       </div>
       <div className="steps-nav">
-        <button className="steps-btn" onClick={prev} aria-label="Anterior"><ChevronIcon dir="left" size={20} /></button>
+        <button className="steps-btn" onClick={prev} aria-label={S.services.steps.nav.prev}><ChevronIcon dir="left" size={20} /></button>
         <div className="steps-dots">
           {steps.map((_, i) => (
             <button key={i} className={`steps-dot ${i === active ? "steps-dot--active" : ""}`}
-              onClick={() => setActive(i)} aria-label={`Passo ${i + 1}`} />
+              onClick={() => setActive(i)} aria-label={`${S.services.steps.nav.dot} ${i + 1}`} />
           ))}
         </div>
-        <button className="steps-btn" onClick={next} aria-label="Próximo"><ChevronIcon dir="right" size={20} /></button>
+        <button className="steps-btn" onClick={next} aria-label={S.services.steps.nav.next}><ChevronIcon dir="right" size={20} /></button>
       </div>
     </div>
   );
 }
 
-/* ---- Mosaic data ---- */
-const MOSAIC_ITEMS = [
-  { area:"a", label:"Estratégia de Marca",  color:"#1F8FD4", body:"Posicionamento claro, diferencial definido e mensagem que ressoa com tutores — a base de tudo que vem depois." },
-  { area:"b", label:"Identidade Visual",    color:"#0B5A8A", body:"Logotipo, cores, tipografia e linguagem visual que transmitem profissionalismo e geram reconhecimento imediato." },
-  { area:"c", label:"Conteúdo de Valor",    color:"#2DA8E8", body:"Textos, imagens e vídeos educativos que estabelecem autoridade e mantêm sua audiência engajada." },
-  { area:"d", label:"Análise de Dados",     color:"#155F8A", body:"Métricas monitoradas, relatórios claros e decisões embasadas para maximizar o retorno de cada investimento." },
-  { area:"e", label:"Gestão de Pessoas",    color:"#1F8FD4", body:"Equipe alinhada, processos definidos e cultura de atendimento que transforma clientes em defensores da marca." },
-  { area:"f", label:"Relacionamento",       color:"#0B5A8A", body:"Comunicação ativa com tutores antes, durante e após o atendimento para fidelização de longo prazo." },
-  { area:"g", label:"Mídia Paga",           color:"#2DA8E8", body:"Campanhas segmentadas no Google, Instagram e Facebook que chegam ao tutor certo, no momento certo." },
-  { area:"h", label:"Presença Digital",     color:"#155F8A", body:"Site, redes sociais, Google Maps e WhatsApp integrados para uma experiência de marca consistente em todos os canais." },
-  { area:"i", label:"Resultados",           color:"#0B5A8A", body:"Indicadores reais: mais agendamentos, mais fidelização, mais indicações — acompanhados e documentados a cada ciclo." }
-];
+/* ---- Mosaic data — text lives in S.services.management.mosaic ---- */
 
 /* ---- Mosaic modal (simple fade, sem flip) ---- */
 function MosaicModal({ data, onClose }) {
@@ -105,7 +94,7 @@ function MosaicModal({ data, onClose }) {
       <div className="mmodal__box" onClick={(e) => e.stopPropagation()}>
         <div className="mmodal__strip" style={{ background: data.color }} />
         <div className="mmodal__content">
-          <button className="mmodal__close" onClick={onClose} aria-label="Fechar">✕</button>
+          <button className="mmodal__close" onClick={onClose} aria-label={S.a11y.modal_close}>✕</button>
           <h3 className="mmodal__title">{data.label}</h3>
           <p className="mmodal__body">{data.body}</p>
           <a href={WA} target="_blank" rel="noopener noreferrer" className="cta cta--solid">
@@ -123,7 +112,7 @@ function MosaicGrid() {
   return (
     <>
       <div className="mosaic" data-reveal>
-        {MOSAIC_ITEMS.map((item, i) => (
+        {S.services.management.mosaic.map((item, i) => (
           <div key={i} className="mosaic-item" role="button" tabIndex={0}
             style={{ gridArea: item.area, background: item.color }}
             onClick={() => setOpenItem(item)}
@@ -185,9 +174,7 @@ function ServicesPage({ t }) {
       {/* IDENTIDADE VISUAL */}
       <section className="inner-page">
         <PageHero eyebrow={id.eyebrow} title={id.title} subtitle={id.subtitle} />
-        <p className="interact-hint" data-reveal>
-          Passe o mouse ou clique em cada plataforma para saber mais ↓
-        </p>
+        <p className="interact-hint" data-reveal>{id.interact_hint}</p>
         <div className="audience__grid" style={{ marginTop: "16px" }}>
           {platforms.map((p, i) => (
             <PlatformCard key={i} index={i} icon={p.icon} name={p.name} color={p.color} blurb={p.blurb} onOpen={openModal} />
@@ -213,9 +200,7 @@ function ServicesPage({ t }) {
           <div className="audience__eyebrow"><span>{mg.eyebrow}</span></div>
           <h2 className="audience__title">{mg.title}</h2>
         </div>
-        <p className="interact-hint" data-reveal>
-          Clique em qualquer área para conhecer o que fazemos ↓
-        </p>
+        <p className="interact-hint" data-reveal>{mg.interact_hint}</p>
         <MosaicGrid />
         <CtaRow ctaStyle={t.ctaStyle} />
       </section>
