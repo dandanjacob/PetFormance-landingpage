@@ -82,25 +82,31 @@ function StepsCarousel({ steps }) {
 
 /* ---- Mosaic data — text lives in S.services.management.mosaic ---- */
 
-/* ---- Mosaic modal (simple fade, sem flip) ---- */
-function MosaicModal({ data, onClose }) {
-  useEffect(() => {
-    const onKey = (e) => { if (e.key === "Escape") onClose(); };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [onClose]);
+/* ---- Mosaic in-place expansion (substitui modal) ---- */
+function MosaicExpanded({ item, originPct, onClose }) {
+  const [on, setOn] = useState(false);
+  useEffect(() => { const t = setTimeout(() => setOn(true), 16); return () => clearTimeout(t); }, []);
   return (
-    <div className="mmodal" onClick={onClose}>
-      <div className="mmodal__box" onClick={(e) => e.stopPropagation()}>
-        <div className="mmodal__strip" style={{ background: data.color }} />
-        <div className="mmodal__content">
-          <button className="mmodal__close" onClick={onClose} aria-label={S.a11y.modal_close}>✕</button>
-          <h3 className="mmodal__title">{data.label}</h3>
-          <p className="mmodal__body">{data.body}</p>
+    <div
+      className={`mexd ${on ? "mexd--on" : ""}`}
+      style={{ transformOrigin: `${originPct.x.toFixed(1)}% ${originPct.y.toFixed(1)}%` }}
+    >
+      <div className="mexd__bar" style={{ background: item.color }}>
+        <span className="mexd__title">{item.label}</span>
+        <button className="mexd__close" onClick={onClose} aria-label={S.a11y.modal_close}>✕</button>
+      </div>
+      <div className={`mexd__body ${item.video ? "mexd__body--split" : ""}`}>
+        <div className="mexd__text">
+          <p className="mexd__desc">{item.body}</p>
           <a href={WA} target="_blank" rel="noopener noreferrer" className="cta cta--solid">
             {S.cta.modal_specialist} <ArrowIcon size={16} />
           </a>
         </div>
+        {item.video && (
+          <div className="mexd__video">
+            <iframe src={item.video} title={item.label} allow="autoplay" allowFullScreen />
+          </div>
+        )}
       </div>
     </div>
   );
@@ -109,21 +115,46 @@ function MosaicModal({ data, onClose }) {
 /* ---- Mosaic grid ---- */
 function MosaicGrid() {
   const [openItem, setOpenItem] = useState(null);
+  const [originPct, setOriginPct] = useState({ x: 50, y: 50 });
+  const wrapRef = useRef(null);
+
+  const openTile = useCallback((item, e) => {
+    if (openItem?.area === item.area) { setOpenItem(null); return; }
+    const wr = wrapRef.current?.getBoundingClientRect();
+    const tr = e.currentTarget.getBoundingClientRect();
+    if (wr && tr) setOriginPct({
+      x: (tr.left - wr.left + tr.width  / 2) / wr.width  * 100,
+      y: (tr.top  - wr.top  + tr.height / 2) / wr.height * 100,
+    });
+    setOpenItem(item);
+  }, [openItem]);
+
+  const closeTile = useCallback(() => setOpenItem(null), []);
+
+  useEffect(() => {
+    if (!openItem) return;
+    const onKey = (e) => { if (e.key === "Escape") closeTile(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [openItem, closeTile]);
+
   return (
-    <>
+    <div className="mosaic-wrap" ref={wrapRef}>
       <div className="mosaic" data-reveal>
         {S.services.management.mosaic.map((item, i) => (
-          <div key={i} className="mosaic-item" role="button" tabIndex={0}
+          <div key={i}
+            className={`mosaic-item ${openItem?.area === item.area ? "is-open" : ""}`}
+            role="button" tabIndex={0}
             style={{ gridArea: item.area, background: item.color }}
-            onClick={() => setOpenItem(item)}
-            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setOpenItem(item); }}>
+            onClick={(e) => openTile(item, e)}
+            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") openTile(item, e); }}>
             <span className="mosaic-item__label">{item.label}</span>
             <span className="mosaic-item__plus" aria-hidden="true">+</span>
           </div>
         ))}
       </div>
-      {openItem && <MosaicModal data={openItem} onClose={() => setOpenItem(null)} />}
-    </>
+      {openItem && <MosaicExpanded item={openItem} originPct={originPct} onClose={closeTile} />}
+    </div>
   );
 }
 
@@ -174,6 +205,7 @@ function ServicesPage({ t }) {
       {/* IDENTIDADE VISUAL */}
       <section className="inner-page">
         <PageHero eyebrow={id.eyebrow} title={id.title} subtitle={id.subtitle} />
+        <h2 className="platforms-heading" data-reveal>{id.platforms_heading}</h2>
         <p className="interact-hint" data-reveal>{id.interact_hint}</p>
         <div className="audience__grid" style={{ marginTop: "16px" }}>
           {platforms.map((p, i) => (
