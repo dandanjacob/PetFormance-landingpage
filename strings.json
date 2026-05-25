@@ -160,7 +160,7 @@
         "title":         "Nossos serviços",
         "interact_hint": "Clique em qualquer área para conhecer o que fazemos ↓",
         "mosaic": [
-          { "area": "a", "label": "Gerenciamento de Redes Sociais",        "color": "#1F8FD4", "video": "https://drive.google.com/file/d/14lUJfG5cXu_RZ5eXEldGsm64D59k88rH/preview", "body": "Cuidamos do dia a dia das suas redes: publicações, comentários e crescimento orgânico — para que você foque no que faz de melhor, o atendimento." },
+          { "area": "a", "label": "Gerenciamento de Redes Sociais",        "color": "#1F8FD4", "body": "Cuidamos do dia a dia das suas redes: publicações, comentários e crescimento orgânico — para que você foque no que faz de melhor, o atendimento." },
           { "area": "b", "label": "Cronograma de Conteúdo",                "color": "#0B5A8A", "body": "Planejamos cada post com intenção: temas, datas, formatos e objetivos alinhados à sua marca e ao calendário do setor veterinário." },
           { "area": "c", "label": "Design para Stories e Feed",            "color": "#2DA8E8", "body": "Identidade visual aplicada em cada peça: artes de feed, stories e destaques que transmitem profissionalismo e geram reconhecimento imediato." },
           { "area": "d", "label": "Roteiros para Vídeo",                   "color": "#155F8A", "body": "Roteiros pensados para educar, engajar e converter — com linguagem acessível para tutores e tom alinhado à sua personalidade de marca." },

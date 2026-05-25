@@ -80,33 +80,37 @@ function StepsCarousel({ steps }) {
   );
 }
 
-/* ---- Mosaic data — text lives in S.services.management.mosaic ---- */
+/* ---- Extract Google Drive file ID for thumbnail poster ---- */
+function driveThumbnail(url) {
+  if (!url) return null;
+  const m = url.match(/\/d\/([^/]+)\//);
+  return m ? `https://drive.google.com/thumbnail?id=${m[1]}&sz=w640` : null;
+}
 
-/* ---- Mosaic in-place expansion (substitui modal) ---- */
+/* ---- Overlay for non-video tiles (colored bar + white body) ---- */
 function MosaicExpanded({ item, originPct, onClose }) {
   const [on, setOn] = useState(false);
   useEffect(() => { const t = setTimeout(() => setOn(true), 16); return () => clearTimeout(t); }, []);
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
   return (
-    <div
-      className={`mexd ${on ? "mexd--on" : ""}`}
-      style={{ transformOrigin: `${originPct.x.toFixed(1)}% ${originPct.y.toFixed(1)}%` }}
-    >
+    <div className={`mexd ${on ? "mexd--on" : ""}`}
+      style={{ transformOrigin: `${originPct.x.toFixed(1)}% ${originPct.y.toFixed(1)}%` }}>
       <div className="mexd__bar" style={{ background: item.color }}>
         <span className="mexd__title">{item.label}</span>
         <button className="mexd__close" onClick={onClose} aria-label={S.a11y.modal_close}>✕</button>
       </div>
-      <div className={`mexd__body ${item.video ? "mexd__body--split" : ""}`}>
+      <div className="mexd__body">
         <div className="mexd__text">
           <p className="mexd__desc">{item.body}</p>
           <a href={WA} target="_blank" rel="noopener noreferrer" className="cta cta--solid">
             {S.cta.modal_specialist} <ArrowIcon size={16} />
           </a>
         </div>
-        {item.video && (
-          <div className="mexd__video">
-            <iframe src={item.video} title={item.label} allow="autoplay" allowFullScreen />
-          </div>
-        )}
       </div>
     </div>
   );
@@ -118,7 +122,12 @@ function MosaicGrid() {
   const [originPct, setOriginPct] = useState({ x: 50, y: 50 });
   const wrapRef = useRef(null);
 
-  const openTile = useCallback((item, e) => {
+  /* video tiles: open on hover; non-video: open on click */
+  const openVideoTile = useCallback((item) => {
+    setOpenItem(prev => prev?.area === item.area ? null : item);
+  }, []);
+
+  const openNonVideoTile = useCallback((item, e) => {
     if (openItem?.area === item.area) { setOpenItem(null); return; }
     const wr = wrapRef.current?.getBoundingClientRect();
     const tr = e.currentTarget.getBoundingClientRect();
@@ -138,23 +147,79 @@ function MosaicGrid() {
     return () => window.removeEventListener("keydown", onKey);
   }, [openItem, closeTile]);
 
+  const isVideoOpen = !!(openItem?.video);
+
   return (
-    <div className="mosaic-wrap" ref={wrapRef}>
-      <div className="mosaic" data-reveal>
-        {S.services.management.mosaic.map((item, i) => (
-          <div key={i}
-            className={`mosaic-item ${openItem?.area === item.area ? "is-open" : ""}`}
-            role="button" tabIndex={0}
-            style={{ gridArea: item.area, background: item.color }}
-            onClick={(e) => openTile(item, e)}
-            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") openTile(item, e); }}>
-            <span className="mosaic-item__label">{item.label}</span>
-            <span className="mosaic-item__plus" aria-hidden="true">+</span>
-          </div>
-        ))}
+    <>
+      {/* blue page scrim only when video is open */}
+      {isVideoOpen && <div className="page-scrim" onClick={closeTile} />}
+      <div className={`mosaic-wrap ${isVideoOpen ? "mosaic-wrap--video-open" : ""}`} ref={wrapRef}>
+        {/* className of .mosaic never changes so React won't wipe the external is-visible class */}
+        <div className="mosaic" data-reveal>
+          {S.services.management.mosaic.map((item, i) => {
+            const isOpen = openItem?.area === item.area;
+            const videoSrc = item.video
+              ? (item.video.includes("?") ? `${item.video}&autoplay=1` : `${item.video}?autoplay=1`)
+              : null;
+            return (
+              <div key={i}
+                className={`mosaic-item ${isOpen ? "is-open" : ""}`}
+                role="button" tabIndex={0}
+                style={{ gridArea: item.area, background: item.color }}
+                /* video tiles open on hover; close when mouse leaves */
+                onMouseEnter={item.video ? () => openVideoTile(item) : undefined}
+                onMouseLeave={item.video && isOpen ? closeTile : undefined}
+                onClick={item.video
+                  ? (e) => { e.stopPropagation(); openVideoTile(item); }
+                  : (e) => openNonVideoTile(item, e)}
+                onKeyDown={(e) => {
+                  if (e.key !== "Enter" && e.key !== " ") return;
+                  item.video ? openVideoTile(item) : openNonVideoTile(item, e);
+                }}>
+
+                {/* faint thumbnail poster when video tile is closed */}
+                {item.video && !isOpen && (
+                  <img src={driveThumbnail(item.video)} className="mosaic-item__thumb"
+                    aria-hidden="true" alt="" />
+                )}
+
+                {/* normal label + plus (non-video, or video when closed) */}
+                {(!item.video || !isOpen) && (
+                  <>
+                    <span className="mosaic-item__label">{item.label}</span>
+                    <span className="mosaic-item__plus" aria-hidden="true">+</span>
+                  </>
+                )}
+
+                {/* inline video content — fills the expanded tile */}
+                {isOpen && item.video && (
+                  <>
+                    <iframe className="mosaic-item__iframe" src={videoSrc}
+                      title={item.label} allow="autoplay" allowFullScreen />
+                    <div className="mexd__block" />
+                    <div className="mexd__overlay">
+                      <h4 className="mexd__overlay-title">{item.label}</h4>
+                      <p className="mexd__overlay-desc">{item.body}</p>
+                      <a href={WA} target="_blank" rel="noopener noreferrer"
+                        className="cta cta--solid">
+                        {S.cta.modal_specialist} <ArrowIcon size={16} />
+                      </a>
+                    </div>
+                    <button className="mexd__close mexd__close--float"
+                      onClick={(e) => { e.stopPropagation(); closeTile(); }}
+                      aria-label={S.a11y.modal_close}>✕</button>
+                  </>
+                )}
+              </div>
+            );
+          })}
+        </div>
+        {/* overlay only for non-video tiles */}
+        {openItem && !openItem.video && (
+          <MosaicExpanded item={openItem} originPct={originPct} onClose={closeTile} />
+        )}
       </div>
-      {openItem && <MosaicExpanded item={openItem} originPct={originPct} onClose={closeTile} />}
-    </div>
+    </>
   );
 }
 
