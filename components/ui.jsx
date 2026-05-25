@@ -89,7 +89,7 @@ function AudienceModal({ data, closing, onClose }) {
 /* ---------- Platform flip card (Serviços page) ---------- */
 function PlatformCard({ icon, name, color, blurb, index, onOpen }) {
   return (
-    <div className="aslot aslot--platform" data-reveal style={{"--reveal-delay": `${index * 0.08}s`}}>
+    <div className="aslot aslot--platform" data-reveal style={{"--reveal-delay": `${index * 0.08}s`, "--pcolor": color}}>
       <button type="button" className="acard acard--platform" aria-label={name}
         style={{"--pcolor": color}}
         onMouseEnter={() => onOpen(index)} onFocus={() => onOpen(index)} onClick={() => onOpen(index)}>
