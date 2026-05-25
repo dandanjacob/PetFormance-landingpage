@@ -67,6 +67,8 @@ function HomePage({ t }) {
         <BenefitCard data-reveal style={{"--reveal-delay":"0.3s"}} delay={0.6}
           icon={<TrophyIcon size={108} strokeWidth={2.4} />}
           title={S.benefits[2].title} body={S.benefits[2].body} />
+        {/* Luísa peeking out from the featured card */}
+        <img src="assets/luisa-2.jpeg" className="benefits__luisa" alt="" aria-hidden="true" />
       </section>
 
       {/* CTA 1 */}

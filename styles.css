@@ -655,6 +655,37 @@ button {
   max-width: 38ch;
 }
 
+/* ============ Luísa — floating figure over featured card ============ */
+.benefits__luisa {
+  /* Removed from grid flow by absolute positioning */
+  position: absolute;
+  bottom: -56px;                    /* overflow below card boundary */
+  left: calc(50% + 54px);          /* right-of-center of middle card */
+  transform: translateX(-50%);
+  height: 82%;
+  width: auto;
+  z-index: 3;
+  pointer-events: none;
+  user-select: none;
+
+  /* Radial oval mask: hides grey background edges, focuses on her figure */
+  mask-image: radial-gradient(ellipse 68% 90% at 50% 34%, black 62%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse 68% 90% at 50% 34%, black 62%, transparent 90%);
+
+  /* Depth via drop-shadow (follows the masked silhouette) */
+  filter: drop-shadow(0 20px 48px rgba(10, 15, 20, 0.22))
+          drop-shadow(0  4px 12px rgba(10, 15, 20, 0.12));
+
+  /* Same gentle float as the cards, offset phase */
+  animation: floatcard 7s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+/* Hide on smaller screens where cards stack */
+@media (max-width: 900px) {
+  .benefits__luisa { display: none; }
+}
+
 /* ============ CTA ============ */
 .cta-row {
   position: relative;
