@@ -100,6 +100,16 @@
           "bio": "Fundador da PetFormance, Daniel combina mais de 6 anos de experiência no mercado pet com domínio das ferramentas digitais mais modernas. Trabalhou com mais de 80 clínicas e hospitais veterinários, desenvolvendo estratégias que geram resultado real — mais agendamentos, mais fidelização e mais autoridade de marca."
         },
         {
+          "name":   "Luísa Mendes Correa",
+          "photo":  "assets/luisa-1.jpeg",
+          "titles": [
+            "Médica Veterinária",
+            "Técnica em Zootecnia",
+            "Pós-graduanda em Gestão e Empreendedorismo Veterinário"
+          ],
+          "bio": "Luísa une a sensibilidade clínica de quem já cuidou de centenas de pacientes à visão estratégica de quem entende o mercado pet de dentro para fora. Médica Veterinária e Técnica em Zootecnia, ela sabe exatamente o que um tutor precisa ouvir — e como a comunicação certa transforma uma consulta em confiança duradoura. Pós-graduanda em Gestão e Empreendedorismo Veterinário, Luísa é a voz que garante que cada estratégia da PetFormance seja desenvolvida com ética, embasamento técnico e total alinhamento ao CRMV. Focada, visionária e com presença que naturalmente passa credibilidade, ela traduz o universo clínico em mensagens que os tutores entendem, confiam e lembram."
+        },
+        {
           "name":   "Colaborador(a)",
           "photo":  null,
           "titles": [
@@ -113,9 +123,9 @@
 
     "services": {
       "identity": {
-        "eyebrow":       "Identidade Visual",
-        "title":         "Sua marca em todos os canais certos",
-        "subtitle":      "Criamos e gerenciamos sua presença nas plataformas que seus clientes já usam.",
+        "eyebrow":       "Não fazemos Marketing Genérico",
+        "title":         "Criamos autoridade e crescimento digital",
+        "subtitle":      "Hoje não basta ser um bom veterinário — você precisa ser ouvido, visto e lembrado. Aumentamos a visibilidade da sua marca e empresa com visão clínica, ética e estratégias alinhadas ao CRMV.",
         "interact_hint": "Passe o mouse ou clique em cada plataforma para saber mais ↓",
         "platforms": [
           {
@@ -164,19 +174,21 @@
       },
 
       "management": {
-        "eyebrow":       "Gestão",
-        "title":         "Gestão de marketing e pessoas",
+        "eyebrow":       "O que fazemos",
+        "title":         "Nossos serviços",
         "interact_hint": "Clique em qualquer área para conhecer o que fazemos ↓",
         "mosaic": [
-          { "area": "a", "label": "Estratégia de Marca", "color": "#1F8FD4", "body": "Posicionamento claro, diferencial definido e mensagem que ressoa com tutores — a base de tudo que vem depois." },
-          { "area": "b", "label": "Identidade Visual",   "color": "#0B5A8A", "body": "Logotipo, cores, tipografia e linguagem visual que transmitem profissionalismo e geram reconhecimento imediato." },
-          { "area": "c", "label": "Conteúdo de Valor",   "color": "#2DA8E8", "body": "Textos, imagens e vídeos educativos que estabelecem autoridade e mantêm sua audiência engajada." },
-          { "area": "d", "label": "Análise de Dados",    "color": "#155F8A", "body": "Métricas monitoradas, relatórios claros e decisões embasadas para maximizar o retorno de cada investimento." },
-          { "area": "e", "label": "Gestão de Pessoas",   "color": "#1F8FD4", "body": "Equipe alinhada, processos definidos e cultura de atendimento que transforma clientes em defensores da marca." },
-          { "area": "f", "label": "Relacionamento",      "color": "#0B5A8A", "body": "Comunicação ativa com tutores antes, durante e após o atendimento para fidelização de longo prazo." },
-          { "area": "g", "label": "Mídia Paga",          "color": "#2DA8E8", "body": "Campanhas segmentadas no Google, Instagram e Facebook que chegam ao tutor certo, no momento certo." },
-          { "area": "h", "label": "Presença Digital",    "color": "#155F8A", "body": "Site, redes sociais, Google Maps e WhatsApp integrados para uma experiência de marca consistente em todos os canais." },
-          { "area": "i", "label": "Resultados",          "color": "#0B5A8A", "body": "Indicadores reais: mais agendamentos, mais fidelização, mais indicações — acompanhados e documentados a cada ciclo." }
+          { "area": "a", "label": "Gerenciamento de Redes Sociais",        "color": "#1F8FD4", "body": "Cuidamos do dia a dia das suas redes: publicações, comentários e crescimento orgânico — para que você foque no que faz de melhor, o atendimento." },
+          { "area": "b", "label": "Cronograma de Conteúdo",                "color": "#0B5A8A", "body": "Planejamos cada post com intenção: temas, datas, formatos e objetivos alinhados à sua marca e ao calendário do setor veterinário." },
+          { "area": "c", "label": "Design para Stories e Feed",            "color": "#2DA8E8", "body": "Identidade visual aplicada em cada peça: artes de feed, stories e destaques que transmitem profissionalismo e geram reconhecimento imediato." },
+          { "area": "d", "label": "Roteiros para Vídeo",                   "color": "#155F8A", "body": "Roteiros pensados para educar, engajar e converter — com linguagem acessível para tutores e tom alinhado à sua personalidade de marca." },
+          { "area": "e", "label": "Gravação de Vídeo",                     "color": "#1F8FD4", "body": "Produção profissional de reels, vídeos institucionais e bastidores que humanizam sua equipe e aproximam tutores da sua marca." },
+          { "area": "f", "label": "Edição Profissional de Vídeos",         "color": "#0B5A8A", "body": "Pós-produção completa: corte, legendas, trilha e motion — vídeos prontos para bombar no Instagram, YouTube e WhatsApp." },
+          { "area": "g", "label": "Site, Link Bio e Landing Page",         "color": "#2DA8E8", "body": "Presença digital 24h: site institucional, link de bio inteligente ou landing page de conversão — rápido, responsivo e feito para gerar agendamentos." },
+          { "area": "h", "label": "Tráfego Pago",                         "color": "#155F8A", "body": "Campanhas no Google Ads e Meta Ads segmentadas para o tutor certo, no momento certo, com orçamento controlado e retorno mensurável." },
+          { "area": "i", "label": "Biografia do Instagram",                "color": "#1F8FD4", "body": "Sua bio é a primeira impressão. Criamos uma apresentação clara e otimizada que converte visitantes em seguidores e seguidores em clientes." },
+          { "area": "j", "label": "Estratégias para Crescimento Digital",  "color": "#0B5A8A", "body": "Diagnóstico completo da sua presença digital, posicionamento de marca e plano de ação customizado para crescimento sustentável e orgânico." },
+          { "area": "k", "label": "Gestão de Presença Local",              "color": "#155F8A", "body": "Ficha do Google Meu Negócio otimizada, avaliações monitoradas e presença garantida nas buscas 'perto de mim' — fundamental para clínicas e hospitais." }
         ]
       }
     },

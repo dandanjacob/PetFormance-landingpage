@@ -1609,11 +1609,12 @@ button {
 .mosaic {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 180px);
+  grid-template-rows: repeat(4, 160px);
   grid-template-areas:
-    "a a e f h"
-    "b c e g h"
-    "b d e i i";
+    "a a d e h"
+    "a a d f h"
+    "b c g g i"
+    "j j j k k";
   gap: 10px;
   margin: 0 auto 64px;
   border-radius: 20px;
@@ -1695,13 +1696,14 @@ button {
 
   .mosaic {
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(5, 140px);
+    grid-template-rows: repeat(6, 130px);
     grid-template-areas:
-      "a a e"
+      "a a d"
+      "a a d"
       "b c e"
-      "b d e"
-      "f g h"
-      "i i h";
+      "f g g"
+      "h i j"
+      "k k k";
   }
 
   .results-grid {
@@ -1733,14 +1735,15 @@ button {
 
   .mosaic {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(6, 120px);
+    grid-template-rows: repeat(7, 110px);
     grid-template-areas:
       "a a"
-      "b e"
-      "c e"
+      "b c"
       "d e"
       "f g"
-      "h i";
+      "h i"
+      "j j"
+      "k k";
   }
 
   .step-card { width: 160px; padding: 22px 16px; }
