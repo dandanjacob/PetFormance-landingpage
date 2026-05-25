@@ -65,22 +65,10 @@ const S = {
     subtitle: "Especialistas apaixonados pelo universo pet e pelos resultados dos nossos clientes.",
     team: [
       {
-        name:   "Daniel Jacobsen",
-        photo:  null,
-        titles: ["Técnico em Gestão", "Graduando em Marketing", "Especialista em Marketing Digital"],
-        bio:    "Fundador da PetFormance, Daniel combina mais de 6 anos de experiência no mercado pet com domínio das ferramentas digitais mais modernas. Trabalhou com mais de 80 clínicas e hospitais veterinários, desenvolvendo estratégias que geram resultado real — mais agendamentos, mais fidelização e mais autoridade de marca."
-      },
-      {
         name:   "Luísa Mendes Correa",
         photo:  "assets/luisa-1.jpeg",
         titles: ["Médica Veterinária", "Técnica em Zootecnia", "Pós-graduanda em Gestão e Empreendedorismo Veterinário"],
-        bio:    "Luísa une a sensibilidade clínica de quem já cuidou de centenas de pacientes à visão estratégica de quem entende o mercado pet de dentro para fora. Médica Veterinária e Técnica em Zootecnia, ela sabe exatamente o que um tutor precisa ouvir — e como a comunicação certa transforma uma consulta em confiança duradoura. Pós-graduanda em Gestão e Empreendedorismo Veterinário, Luísa é a voz que garante que cada estratégia da PetFormance seja desenvolvida com ética, embasamento técnico e total alinhamento ao CRMV. Focada, visionária e com presença que naturalmente passa credibilidade, ela traduz o universo clínico em mensagens que os tutores entendem, confiam e lembram."
-      },
-      {
-        name:   "Colaborador(a)",
-        photo:  null,
-        titles: ["Técnico(a) em Comunicação", "Graduando(a) em Publicidade"],
-        bio:    "Em breve."
+        bio:    "Médica Veterinária e Técnica em Zootecnia, Luísa une sensibilidade clínica à visão estratégica de quem entende o mercado pet de dentro para fora. Carinhosa, honesta e com presença natural, ela garante que cada estratégia da PetFormance seja desenvolvida com ética e total alinhamento ao CRMV — traduzindo o universo veterinário em comunicação que tutores confiam e lembram."
       }
     ]
   },
