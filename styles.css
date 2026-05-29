@@ -1065,6 +1065,18 @@ button {
   flex: 1;
 }
 
+.amodal__blurb-list {
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 500;
+  margin: 14px 0 0;
+  padding-left: 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .amodal__cta {
   align-self: flex-start;
   display: inline-flex;
@@ -1183,6 +1195,16 @@ button {
 [data-reveal].is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ============ Platform grid — 3+3 layout on notebook ============ */
+@media (min-width: 980px) {
+  .audience__grid--platforms {
+    display: grid;
+    grid-template-columns: repeat(3, 112px);
+    gap: 32px;
+    max-width: none;
+  }
 }
 
 /* ============ Responsive ============ */
@@ -2000,6 +2022,98 @@ button {
 
 .mexd__close--float:hover {
   background: rgba(0,0,0,0.65);
+}
+
+/* ============ Video carousel ============ */
+.vid-carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.vid-slide {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.vid-slide__video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.vid-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-deep) 100%);
+}
+
+.vid-slide__title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+  margin: 0;
+  text-align: center;
+}
+
+.vid-slide__desc {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0;
+  text-align: center;
+}
+
+.vid-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.vid-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+
+.vid-btn:hover { background: var(--surface-2); }
+
+.vid-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.vid-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: var(--line);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.18s;
+}
+
+.vid-dot--active {
+  background: var(--brand);
 }
 
 /* ============ Carousel — snap scroll on mobile ============ */

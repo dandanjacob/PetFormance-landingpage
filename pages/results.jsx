@@ -16,10 +16,6 @@ function ResultsPage({ t }) {
 
   return (
     <>
-      <div className="paws" aria-hidden="true">
-        <PawIcon size={200} /><PawIcon size={260} /><PawIcon size={180} />
-      </div>
-
       <section className="inner-page">
         <PageHero eyebrow={S.results.eyebrow} title={S.results.title}
           subtitle={S.results.subtitle} />

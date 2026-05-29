@@ -40,11 +40,6 @@ function AboutPage({ t }) {
 
   return (
     <>
-      <div className="paws" aria-hidden="true">
-        <PawIcon size={200} /><PawIcon size={260} /><PawIcon size={180} />
-        <PawIcon size={300} /><PawIcon size={220} />
-      </div>
-
       <section className="inner-page">
         <PageHero eyebrow={data.eyebrow} title={data.title} subtitle={data.subtitle} />
 

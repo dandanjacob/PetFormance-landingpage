@@ -34,12 +34,6 @@ function HomePage({ t }) {
 
   return (
     <>
-      {/* DECORATIVE PAWS */}
-      <div className="paws" aria-hidden="true">
-        <PawIcon size={200} /><PawIcon size={260} /><PawIcon size={180} />
-        <PawIcon size={300} /><PawIcon size={220} /><PawIcon size={170} /><PawIcon size={240} />
-      </div>
-
       {/* HERO */}
       <section className="hero" data-screen-label="02 Home · Hero">
         <div className="hero__logo-wrap">

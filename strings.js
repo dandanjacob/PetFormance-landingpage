@@ -1,7 +1,7 @@
 /* WhatsApp & i18n strings — source of truth: strings.json */
 /* global declaration so all page scripts can read WA and S  */
 
-const WA = "https://wa.me/5527996353150";
+const WA = "https://wa.me/5527998846480";
 
 const S = {
   page_title: "PetFormance · Marketing veterinário com qualidade",
@@ -67,7 +67,7 @@ const S = {
       {
         name:   "Luísa Mendes Correa",
         photo:  "assets/luisa-1.jpeg",
-        titles: ["Médica Veterinária", "Técnica em Zootecnia", "Pós-graduanda em Gestão e Empreendedorismo Veterinário"],
+        titles: ["Médica Veterinária", "Técnica em Zootecnia", "Pós-graduanda em Gestão e Empreendedorismo no Mercado PET"],
         bio:    "Médica Veterinária e Técnica em Zootecnia, Luísa une sensibilidade clínica à visão estratégica de quem entende o mercado pet de dentro para fora. Carinhosa, honesta e com presença natural, ela garante que cada estratégia da PetFormance seja desenvolvida com ética e total alinhamento ao CRMV — traduzindo o universo veterinário em comunicação que tutores confiam e lembram."
       }
     ]
@@ -78,14 +78,15 @@ const S = {
       eyebrow:       "Não fazemos Marketing Genérico",
       title:         "Criamos autoridade e crescimento digital",
       subtitle:      "Hoje não basta ser um bom veterinário — você precisa ser ouvido, visto e lembrado. Aumentamos a visibilidade da sua marca e empresa com visão clínica, ética e estratégias alinhadas ao CRMV.",
-      platforms_heading: "Plataformas sociais que trabalhamos",
+      platforms_heading: "Veja em quais plataformas te ajudamos a construir",
       interact_hint: "Passe o mouse ou clique em cada plataforma para saber mais ↓",
       platforms: [
         { name: "Instagram",   color: "#E1306C", blurb: "Feed curado, stories estratégicos e Reels que engajam tutores e geram consultas de verdade." },
         { name: "WhatsApp",    color: "#25D366", blurb: "Atendimento ágil e campanhas diretas: o cliente certo, na hora certa, no canal favorito do brasileiro." },
+        { name: "TikTok",      color: "#010101", blurb: "Vídeos curtos que viralizam: conteúdo educativo e autêntico que coloca sua marca na tela de descoberta de novos tutores." },
         { name: "Facebook",    color: "#1877F2", blurb: "Comunidade e alcance local: anúncios segmentados e conteúdo que cria vínculos duradouros com tutores." },
         { name: "Google Maps", color: "#4285F4", blurb: "Ficha otimizada, avaliações gerenciadas e presença garantida no 'perto de mim' das buscas locais." },
-        { name: "Site / Web",  color: "#0B5A8A", blurb: "Vitrine digital 24h: site profissional, rápido e preparado para converter visitas em consultas agendadas." }
+        { name: "Site / Web",  color: "#0B5A8A", blurb: ["Landing page responsiva e estática — carrega rápido, funciona em qualquer dispositivo.", "Formulário de contato / WhatsApp integrado para capturar leads.", "SEO on-page básico para ranquear no Google desde o dia 1."] }
       ]
     },
     steps: {
@@ -100,6 +101,16 @@ const S = {
         { num: "05", title: "Análise",     body: "Monitoramos resultados, ajustamos estratégias e entregamos relatórios claros de retorno sobre investimento." }
       ]
     },
+    videos: {
+      eyebrow: "Na prática",
+      title: "Veja nosso trabalho",
+      items: [
+        { title: "Presença que converte", desc: "Conteúdo criado para engajar tutores e gerar agendamentos reais — não só curtidas." },
+        { title: "Identidade que marca", desc: "Visual pensado para o seu nicho: cada peça reforça o que faz a sua clínica ser especial." },
+        { title: "Estratégia com resultado", desc: "Da publicação ao relatório — acompanhamos tudo para garantir crescimento consistente." }
+      ]
+    },
+
     management: {
       eyebrow:       "O que fazemos",
       title:         "Nossos serviços",
@@ -131,11 +142,9 @@ const S = {
   footer: {
     nav_heading:     "Navegar",
     contact_heading: "Contato",
-    email:           "contato@petformance.com.br",
-    phone:           "+55 (27) 99635-3150",
+    phone:           "+55 (27) 99884-6480",
     social_heading:  "Social",
     instagram:       "Instagram",
-    linkedin:        "LinkedIn",
     legal:           "PetFormance · Marketing veterinário com qualidade."
   },
 

@@ -1,7 +1,7 @@
 /* global React, S, WA */
-/* global PawIcon, ArrowIcon, ChevronIcon */
-/* global InstagramIcon, WhatsAppIcon, FacebookIcon, GoogleMapsIcon, WebIcon */
-/* global PlatformCard, StepCard, CtaRow, PageHero */
+/* global ArrowIcon, ChevronIcon */
+/* global InstagramIcon, WhatsAppIcon, FacebookIcon, GoogleMapsIcon, TikTokIcon, WebIcon */
+/* global PlatformCard, CtaRow, PageHero */
 const { useState, useEffect, useRef, useCallback } = React;
 
 /* ---- Platform modal (flip animation) ---- */
@@ -31,7 +31,9 @@ function PlatformModal({ data, closing, onClose }) {
           style={{ background: `linear-gradient(140deg, ${data.color} 0%, color-mix(in oklab, ${data.color} 60%, black) 100%)` }}>
           <div className="amodal__back-eyebrow">{S.modal.platform_eyebrow}</div>
           <h4 className="amodal__back-title">{data.name}</h4>
-          <p className="amodal__blurb">{data.blurb}</p>
+          {Array.isArray(data.blurb)
+            ? <ul className="amodal__blurb-list">{data.blurb.map((b, i) => <li key={i}>{b}</li>)}</ul>
+            : <p className="amodal__blurb">{data.blurb}</p>}
           <a href={WA} target="_blank" rel="noopener noreferrer" className="amodal__cta">
             {S.cta.modal_specialist} <ArrowIcon size={14} />
           </a>
@@ -41,194 +43,47 @@ function PlatformModal({ data, closing, onClose }) {
   );
 }
 
-/* ---- Step carousel — centers active card on mobile ---- */
-function StepsCarousel({ steps }) {
+/* ---- Video carousel ---- */
+function VideoCarousel() {
   const [active, setActive] = useState(0);
-  const trackRef = useRef(null);
-
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    const card = track.children[active];
-    if (!card) return;
-    const scrollLeft = card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2;
-    track.scrollTo({ left: Math.max(0, scrollLeft), behavior: "smooth" });
-  }, [active]);
-
-  const prev = () => setActive(i => (i - 1 + steps.length) % steps.length);
-  const next = () => setActive(i => (i + 1) % steps.length);
+  const items = S.services.videos.items;
+  const prev = () => setActive(i => (i - 1 + items.length) % items.length);
+  const next = () => setActive(i => (i + 1) % items.length);
 
   return (
-    <div className="steps-carousel" data-reveal>
-      <div className="steps-track" ref={trackRef}>
-        {steps.map((step, i) => (
-          <StepCard key={i} num={step.num} title={step.title} body={step.body}
-            active={i === active} onClick={() => setActive(i)} />
-        ))}
+    <div className="vid-carousel" data-reveal>
+      <div className="vid-slide">
+        <div className="vid-slide__video">
+          <div className="vid-placeholder" aria-hidden="true">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="white" opacity="0.7">
+              <polygon points="5,3 19,12 5,21" />
+            </svg>
+          </div>
+        </div>
+        <h3 className="vid-slide__title">{items[active].title}</h3>
+        <p className="vid-slide__desc">{items[active].desc}</p>
       </div>
-      <div className="steps-nav">
-        <button className="steps-btn" onClick={prev} aria-label={S.services.steps.nav.prev}><ChevronIcon dir="left" size={20} /></button>
-        <div className="steps-dots">
-          {steps.map((_, i) => (
-            <button key={i} className={`steps-dot ${i === active ? "steps-dot--active" : ""}`}
-              onClick={() => setActive(i)} aria-label={`${S.services.steps.nav.dot} ${i + 1}`} />
+      <div className="vid-nav">
+        <button className="vid-btn" onClick={prev} aria-label="Anterior"><ChevronIcon dir="left" size={20} /></button>
+        <div className="vid-dots">
+          {items.map((_, i) => (
+            <button key={i} className={`vid-dot ${i === active ? "vid-dot--active" : ""}`}
+              onClick={() => setActive(i)} aria-label={`Vídeo ${i + 1}`} />
           ))}
         </div>
-        <button className="steps-btn" onClick={next} aria-label={S.services.steps.nav.next}><ChevronIcon dir="right" size={20} /></button>
+        <button className="vid-btn" onClick={next} aria-label="Próximo"><ChevronIcon dir="right" size={20} /></button>
       </div>
     </div>
-  );
-}
-
-/* ---- Extract Google Drive file ID for thumbnail poster ---- */
-function driveThumbnail(url) {
-  if (!url) return null;
-  const m = url.match(/\/d\/([^/]+)\//);
-  return m ? `https://drive.google.com/thumbnail?id=${m[1]}&sz=w640` : null;
-}
-
-/* ---- Overlay for non-video tiles (colored bar + white body) ---- */
-function MosaicExpanded({ item, originPct, onClose }) {
-  const [on, setOn] = useState(false);
-  useEffect(() => { const t = setTimeout(() => setOn(true), 16); return () => clearTimeout(t); }, []);
-  useEffect(() => {
-    const onKey = (e) => { if (e.key === "Escape") onClose(); };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [onClose]);
-
-  return (
-    <div className={`mexd ${on ? "mexd--on" : ""}`}
-      style={{ transformOrigin: `${originPct.x.toFixed(1)}% ${originPct.y.toFixed(1)}%` }}>
-      <div className="mexd__bar" style={{ background: item.color }}>
-        <span className="mexd__title">{item.label}</span>
-        <button className="mexd__close" onClick={onClose} aria-label={S.a11y.modal_close}>✕</button>
-      </div>
-      <div className="mexd__body">
-        <div className="mexd__text">
-          <p className="mexd__desc">{item.body}</p>
-          <a href={WA} target="_blank" rel="noopener noreferrer" className="cta cta--solid">
-            {S.cta.modal_specialist} <ArrowIcon size={16} />
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ---- Mosaic grid ---- */
-function MosaicGrid() {
-  const [openItem, setOpenItem] = useState(null);
-  const [originPct, setOriginPct] = useState({ x: 50, y: 50 });
-  const wrapRef = useRef(null);
-
-  /* video tiles: open on hover; non-video: open on click */
-  const openVideoTile = useCallback((item) => {
-    setOpenItem(prev => prev?.area === item.area ? null : item);
-  }, []);
-
-  const openNonVideoTile = useCallback((item, e) => {
-    if (openItem?.area === item.area) { setOpenItem(null); return; }
-    const wr = wrapRef.current?.getBoundingClientRect();
-    const tr = e.currentTarget.getBoundingClientRect();
-    if (wr && tr) setOriginPct({
-      x: (tr.left - wr.left + tr.width  / 2) / wr.width  * 100,
-      y: (tr.top  - wr.top  + tr.height / 2) / wr.height * 100,
-    });
-    setOpenItem(item);
-  }, [openItem]);
-
-  const closeTile = useCallback(() => setOpenItem(null), []);
-
-  useEffect(() => {
-    if (!openItem) return;
-    const onKey = (e) => { if (e.key === "Escape") closeTile(); };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [openItem, closeTile]);
-
-  const isVideoOpen = !!(openItem?.video);
-
-  return (
-    <>
-      {/* blue page scrim only when video is open */}
-      {isVideoOpen && <div className="page-scrim" onClick={closeTile} />}
-      <div className={`mosaic-wrap ${isVideoOpen ? "mosaic-wrap--video-open" : ""}`} ref={wrapRef}>
-        {/* className of .mosaic never changes so React won't wipe the external is-visible class */}
-        <div className="mosaic" data-reveal>
-          {S.services.management.mosaic.map((item, i) => {
-            const isOpen = openItem?.area === item.area;
-            const videoSrc = item.video
-              ? (item.video.includes("?") ? `${item.video}&autoplay=1` : `${item.video}?autoplay=1`)
-              : null;
-            return (
-              <div key={i}
-                className={`mosaic-item ${isOpen ? "is-open" : ""}`}
-                role="button" tabIndex={0}
-                style={{ gridArea: item.area, background: item.color }}
-                /* video tiles open on hover; close when mouse leaves */
-                onMouseEnter={item.video ? () => openVideoTile(item) : undefined}
-                onMouseLeave={item.video && isOpen ? closeTile : undefined}
-                onClick={item.video
-                  ? (e) => { e.stopPropagation(); openVideoTile(item); }
-                  : (e) => openNonVideoTile(item, e)}
-                onKeyDown={(e) => {
-                  if (e.key !== "Enter" && e.key !== " ") return;
-                  item.video ? openVideoTile(item) : openNonVideoTile(item, e);
-                }}>
-
-                {/* faint thumbnail poster when video tile is closed */}
-                {item.video && !isOpen && (
-                  <img src={driveThumbnail(item.video)} className="mosaic-item__thumb"
-                    aria-hidden="true" alt="" />
-                )}
-
-                {/* normal label + plus (non-video, or video when closed) */}
-                {(!item.video || !isOpen) && (
-                  <>
-                    <span className="mosaic-item__label">{item.label}</span>
-                    <span className="mosaic-item__plus" aria-hidden="true">+</span>
-                  </>
-                )}
-
-                {/* inline video content — fills the expanded tile */}
-                {isOpen && item.video && (
-                  <>
-                    <iframe className="mosaic-item__iframe" src={videoSrc}
-                      title={item.label} allow="autoplay" allowFullScreen />
-                    <div className="mexd__block" />
-                    <div className="mexd__overlay">
-                      <h4 className="mexd__overlay-title">{item.label}</h4>
-                      <p className="mexd__overlay-desc">{item.body}</p>
-                      <a href={WA} target="_blank" rel="noopener noreferrer"
-                        className="cta cta--solid">
-                        {S.cta.modal_specialist} <ArrowIcon size={16} />
-                      </a>
-                    </div>
-                    <button className="mexd__close mexd__close--float"
-                      onClick={(e) => { e.stopPropagation(); closeTile(); }}
-                      aria-label={S.a11y.modal_close}>✕</button>
-                  </>
-                )}
-              </div>
-            );
-          })}
-        </div>
-        {/* overlay only for non-video tiles */}
-        {openItem && !openItem.video && (
-          <MosaicExpanded item={openItem} originPct={originPct} onClose={closeTile} />
-        )}
-      </div>
-    </>
   );
 }
 
 const platformIcons = [
-  <InstagramIcon size={44} />,
-  <WhatsAppIcon  size={44} />,
-  <FacebookIcon  size={44} />,
+  <InstagramIcon  size={44} />,
+  <WhatsAppIcon   size={44} />,
+  <TikTokIcon     size={44} />,
+  <FacebookIcon   size={44} />,
   <GoogleMapsIcon size={44} />,
-  <WebIcon       size={44} />
+  <WebIcon        size={44} />
 ];
 
 function ServicesPage({ t }) {
@@ -256,23 +111,16 @@ function ServicesPage({ t }) {
   useEffect(() => () => clearTimeout(closeTimer.current), []);
 
   const id = S.services.identity;
-  const st = S.services.steps;
-  const mg = S.services.management;
-
   const platforms = id.platforms.map((p, i) => ({ ...p, icon: platformIcons[i] }));
 
   return (
     <>
-      <div className="paws" aria-hidden="true">
-        <PawIcon size={200} /><PawIcon size={260} /><PawIcon size={300} /><PawIcon size={220} />
-      </div>
-
       {/* IDENTIDADE VISUAL */}
       <section className="inner-page">
         <PageHero eyebrow={id.eyebrow} title={id.title} subtitle={id.subtitle} />
         <h2 className="platforms-heading" data-reveal>{id.platforms_heading}</h2>
         <p className="interact-hint" data-reveal>{id.interact_hint}</p>
-        <div className="audience__grid" style={{ marginTop: "16px" }}>
+        <div className="audience__grid audience__grid--platforms" style={{ marginTop: "16px" }}>
           {platforms.map((p, i) => (
             <PlatformCard key={i} index={i} icon={p.icon} name={p.name} color={p.color} blurb={p.blurb} onOpen={openModal} />
           ))}
@@ -281,24 +129,13 @@ function ServicesPage({ t }) {
 
       {active && <PlatformModal data={platforms[active.idx]} closing={active.closing} onClose={closeModal} />}
 
-      {/* PASSO A PASSO */}
+      {/* VÍDEOS */}
       <section className="inner-page inner-page--alt">
         <div className="audience__head" data-reveal>
-          <div className="audience__eyebrow"><span>{st.eyebrow}</span></div>
-          <h2 className="audience__title">{st.title}</h2>
+          <div className="audience__eyebrow"><span>{S.services.videos.eyebrow}</span></div>
+          <h2 className="audience__title">{S.services.videos.title}</h2>
         </div>
-        <StepsCarousel steps={st.items} />
-        <CtaRow ctaStyle={t.ctaStyle} hint />
-      </section>
-
-      {/* GESTÃO DE MARKETING E PESSOAS */}
-      <section className="inner-page">
-        <div className="audience__head" data-reveal>
-          <div className="audience__eyebrow"><span>{mg.eyebrow}</span></div>
-          <h2 className="audience__title">{mg.title}</h2>
-        </div>
-        <p className="interact-hint" data-reveal>{mg.interact_hint}</p>
-        <MosaicGrid />
+        <VideoCarousel />
         <CtaRow ctaStyle={t.ctaStyle} />
       </section>
     </>

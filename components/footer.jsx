@@ -23,13 +23,15 @@ function Footer({ onNavigate }) {
         </div>
         <div>
           <h4>{S.footer.contact_heading}</h4>
-          <a href={`mailto:${S.footer.email}`}>{S.footer.email}</a>
           <a href={WA} target="_blank" rel="noopener noreferrer">{S.footer.phone}</a>
         </div>
         <div>
           <h4>{S.footer.social_heading}</h4>
-          <a href="#">{S.footer.instagram}</a>
-          <a href="#">{S.footer.linkedin}</a>
+          <a href="https://www.instagram.com/petformanceagency/" target="_blank" rel="noopener noreferrer">{S.footer.instagram}</a>
+        </div>
+        <div>
+          <h4>Serviços</h4>
+          <a href="servicos-lp.html" target="_blank" rel="noopener noreferrer">Criação de Landing Page</a>
         </div>
       </div>
       <div className="foot__legal">© {new Date().getFullYear()} {S.footer.legal}</div>
