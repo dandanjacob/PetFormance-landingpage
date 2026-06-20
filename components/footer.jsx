@@ -1,9 +1,9 @@
 /* global React, S, WA */
 
 function Footer({ onNavigate }) {
-  function go(e, key, hash) {
+  function go(e, key, path) {
     e.preventDefault();
-    window.history.pushState(null, "", hash);
+    window.history.pushState(null, "", path);
     onNavigate(key);
     window.scrollTo(0, 0);
   }
@@ -16,9 +16,9 @@ function Footer({ onNavigate }) {
       <div className="foot__cols">
         <div>
           <h4>{S.footer.nav_heading}</h4>
-          <a href="#home"     onClick={(e) => go(e, "home",     "#home")}>{S.nav.home}</a>
-          <a href="#sobre"    onClick={(e) => go(e, "about",    "#sobre")}>{S.nav.about}</a>
-          <a href="#servicos" onClick={(e) => go(e, "services", "#servicos")}>{S.nav.services}</a>
+          <a href="/"         onClick={(e) => go(e, "home",     "/")}>{S.nav.home}</a>
+          <a href="/sobre"    onClick={(e) => go(e, "about",    "/sobre")}>{S.nav.about}</a>
+          <a href="/servicos" onClick={(e) => go(e, "services", "/servicos")}>{S.nav.services}</a>
         </div>
         <div>
           <h4>{S.footer.contact_heading}</h4>

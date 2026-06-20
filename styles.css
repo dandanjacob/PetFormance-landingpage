@@ -2126,3 +2126,55 @@ button {
   scroll-snap-align: center;
 }
 }
+
+/* ============ 404 ============ */
+.nf {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px;
+  gap: 12px;
+}
+
+.nf__paw {
+  color: var(--brand);
+  opacity: 0.35;
+  margin-bottom: 8px;
+}
+
+.nf__code {
+  font-size: clamp(80px, 18vw, 140px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--brand);
+  line-height: 1;
+  margin: 0;
+  opacity: 0.18;
+  margin-top: -16px;
+}
+
+.nf__title {
+  font-size: clamp(22px, 4vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.nf__body {
+  font-size: 16px;
+  color: var(--ink-soft);
+  max-width: 360px;
+  line-height: 1.6;
+  margin: 4px 0 16px;
+}
+
+.nf__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}

@@ -1,13 +1,13 @@
 /* global React, ReactDOM, useTweaks, TweaksPanel, TweakSection, TweakRadio, TweakToggle */
-/* global S, Nav, Footer, HomePage, AboutPage, ServicesPage, ResultsPage */
+/* global S, Nav, Footer, HomePage, AboutPage, ServicesPage, ResultsPage, NotFoundPage */
 const { useState, useEffect } = React;
 
 function getPage() {
-  const h = window.location.hash;
-  if (h.startsWith("#sobre"))      return "about";
-  if (h.startsWith("#servicos"))   return "services";
-  if (h.startsWith("#resultados")) return "results";
-  return "home";
+  const p = window.location.pathname;
+  if (p === "/" || p === "")     return "home";
+  if (p.startsWith("/sobre"))    return "about";
+  if (p.startsWith("/servicos")) return "services";
+  return "notfound";
 }
 
 function App() {
@@ -56,6 +56,7 @@ function App() {
       {page === "about"    && <AboutPage    t={t} />}
       {page === "services" && <ServicesPage t={t} />}
       {page === "results"  && <ResultsPage  t={t} />}
+      {page === "notfound" && <NotFoundPage />}
 
       <Footer onNavigate={setPage} />
 

@@ -6,14 +6,14 @@ function Nav({ currentPage, onNavigate }) {
   const closeMenu = useCallback(() => setMenuOpen(false), []);
 
   const links = [
-    { key: "home",     label: S.nav.home,     hash: "#home" },
-    { key: "about",    label: S.nav.about,    hash: "#sobre" },
-    { key: "services", label: S.nav.services, hash: "#servicos" }
+    { key: "home",     label: S.nav.home,     path: "/" },
+    { key: "about",    label: S.nav.about,    path: "/sobre" },
+    { key: "services", label: S.nav.services, path: "/servicos" }
   ];
 
-  function go(e, key, hash) {
+  function go(e, key, path) {
     e.preventDefault();
-    window.history.pushState(null, "", hash);
+    window.history.pushState(null, "", path);
     onNavigate(key);
     closeMenu();
   }
@@ -21,7 +21,7 @@ function Nav({ currentPage, onNavigate }) {
   return (
     <>
       <header className="nav">
-        <a href="#home" className="nav__brand" onClick={(e) => go(e, "home", "#home")}>
+        <a href="/" className="nav__brand" onClick={(e) => go(e, "home", "/")}>
           <div className="nav__mark-wrap">
             <img src="assets/logo-melhorada.png" alt="" className="nav__mark" />
           </div>
@@ -29,9 +29,9 @@ function Nav({ currentPage, onNavigate }) {
         </a>
         <nav className="nav__links">
           {links.map(l =>
-            <a key={l.key} href={l.hash}
+            <a key={l.key} href={l.path}
               className={currentPage === l.key ? "is-active" : ""}
-              onClick={(e) => go(e, l.key, l.hash)}>
+              onClick={(e) => go(e, l.key, l.path)}>
               {l.label}
             </a>
           )}
@@ -52,7 +52,7 @@ function Nav({ currentPage, onNavigate }) {
             <button className="mmenu__close" aria-label={S.a11y.menu_close} onClick={closeMenu}><CloseIcon /></button>
             <nav className="mmenu__links">
               {links.map(l =>
-                <a key={l.key} href={l.hash} onClick={(e) => go(e, l.key, l.hash)}>{l.label}</a>
+                <a key={l.key} href={l.path} onClick={(e) => go(e, l.key, l.path)}>{l.label}</a>
               )}
             </nav>
             <a href={WA} target="_blank" rel="noopener noreferrer" className="mmenu__cta" onClick={closeMenu}>
