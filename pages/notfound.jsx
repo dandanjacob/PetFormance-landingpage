@@ -8,7 +8,7 @@ function NotFoundPage() {
   }
 
   return (
-    <section className="inner-page nf">
+    <section className="nf">
       <div className="nf__content">
         <div className="nf__paw" aria-hidden="true"><PawIcon size={56} /></div>
         <p className="nf__code">404</p>
