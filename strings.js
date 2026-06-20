@@ -22,8 +22,8 @@ const S = {
 
   benefits: [
     { title: "Crescimento que decola",  body: "Estratégias focadas em resultado: mais consultas agendadas, mais tutores fiéis, mais autoridade no seu nicho." },
-    { title: "Qualidade reconhecida",   body: "Cuidamos da sua marca como você cuida dos pacientes: com atenção, método e empatia. Resultado que se vê — e que tutores comentam." },
-    { title: "Premiação como rotina",   body: "Mais de 80 clínicas, hospitais e lojas pet atendidas — campanhas que ganharam prêmios e, mais importante, ganharam clientes." }
+    { title: "Qualidade reconhecida",   body: "Cuidamos da sua marca como você cuida dos pacientes: com atenção, método e empatia. Resultado que se vê e que tutores comentam." },
+    { title: "Premiação como rotina",   body: "Campanhas que ganharam prêmios e, mais importante, ganharam clientes reais para clínicas, hospitais e lojas pet." }
   ],
 
   cta: {
@@ -81,12 +81,12 @@ const S = {
       platforms_heading: "Veja em quais plataformas te ajudamos a construir",
       interact_hint: "Passe o mouse ou clique em cada plataforma para saber mais ↓",
       platforms: [
-        { name: "Instagram",   color: "#E1306C", blurb: "Feed curado, stories estratégicos e Reels que engajam tutores e geram consultas de verdade." },
-        { name: "WhatsApp",    color: "#25D366", blurb: "Atendimento ágil e campanhas diretas: o cliente certo, na hora certa, no canal favorito do brasileiro." },
-        { name: "TikTok",      color: "#010101", blurb: "Vídeos curtos que viralizam: conteúdo educativo e autêntico que coloca sua marca na tela de descoberta de novos tutores." },
-        { name: "Facebook",    color: "#1877F2", blurb: "Comunidade e alcance local: anúncios segmentados e conteúdo que cria vínculos duradouros com tutores." },
-        { name: "Google Maps", color: "#4285F4", blurb: "Ficha otimizada, avaliações gerenciadas e presença garantida no 'perto de mim' das buscas locais." },
-        { name: "Site / Web",  color: "#0B5A8A", blurb: ["Landing page responsiva e estática — carrega rápido, funciona em qualquer dispositivo.", "Formulário de contato / WhatsApp integrado para capturar leads.", "SEO on-page básico para ranquear no Google desde o dia 1."] }
+        { name: "Instagram",   color: "#E1306C", blurb: "Gestão completa do perfil: design de artes para feed e stories, criação de conteúdo estratégico, roteirização e edição de Reels — construindo autoridade e gerando agendamentos reais." },
+        { name: "WhatsApp",    color: "#25D366", blurb: "Canal direto com o tutor: atendimento ágil, campanhas de relacionamento e integração com toda a sua estratégia de conteúdo — o canal favorito do brasileiro a favor da sua clínica." },
+        { name: "TikTok",      color: "#010101", blurb: "Roteirização, gravação e edição profissional de vídeos curtos — conteúdo que educa, engaja e coloca sua marca na tela de descoberta de novos tutores." },
+        { name: "Facebook",    color: "#1877F2", blurb: "Gestão de redes, design de artes, tráfego pago (Meta Ads) e construção de branding: alcance local segmentado que transforma vizinhos em clientes fiéis." },
+        { name: "Google",      color: "#4285F4", blurb: "Gestão do Google Meu Negócio, campanhas no Google Ads e análise de métricas — presença garantida nas buscas e no 'perto de mim' dos tutores." },
+        { name: "Site / Web",  color: "#0B5A8A", blurb: ["Criação de site institucional, landing page e link bio — rápidos, responsivos e feitos para converter visitantes em clientes.", "Formulário de contato / WhatsApp integrado para capturar leads.", "SEO on-page e análise de métricas para crescer nos resultados de busca desde o dia 1."] }
       ]
     },
     steps: {

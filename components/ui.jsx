@@ -4,12 +4,17 @@ const { useState, useEffect } = React;
 /* ---------- Animated Logo ---------- */
 function AnimatedLogo({ src, spin }) {
   const isGif = src && src.endsWith(".gif");
+  const isMp4 = src && src.endsWith(".mp4");
+  const isMedia = isGif || isMp4;
   return (
-    <div className={`logo-stage${isGif ? " logo-stage--gif" : ""}`}>
+    <div className={`logo-stage${isMedia ? " logo-stage--gif" : ""}`}>
       <div className="logo-halo" />
       <div className="logo-halo logo-halo--2" />
-      <div className={`logo-spin ${!isGif && spin ? "is-on" : ""}`}>
-        <img src={src} alt="PetFormance" className={`logo-img${isGif ? " logo-img--gif" : ""}`} />
+      <div className={`logo-spin ${!isMedia && spin ? "is-on" : ""}`}>
+        {isMp4
+          ? <video src={src} className="logo-img logo-img--gif" autoPlay loop muted playsInline />
+          : <img src={src} alt="PetFormance" className={`logo-img${isGif ? " logo-img--gif" : ""}`} />
+        }
       </div>
       <div className="logo-shadow" />
     </div>

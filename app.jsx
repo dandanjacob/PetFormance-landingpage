@@ -16,8 +16,7 @@ function App() {
     "spin":         true,
     "ctaStyle":     "outline",
     "headlineCopy": "Você precisa de marketing veterinário?",
-    "tagline":      "PetFormance · Marketing para clínicas e profissionais pet",
-    "showStats":    true
+    "tagline":      "PetFormance · Marketing para clínicas e profissionais pet"
   } /*EDITMODE-END*/;
 
   const [t, setTweak] = useTweaks(TWEAKS);
@@ -69,9 +68,6 @@ function App() {
         </TweakSection>
         <TweakSection title="Animação">
           <TweakToggle label="Girar logo no hero" value={t.spin} onChange={(v) => setTweak("spin", v)} />
-        </TweakSection>
-        <TweakSection title="Conteúdo">
-          <TweakToggle label="Mostrar indicadores" value={t.showStats} onChange={(v) => setTweak("showStats", v)} />
         </TweakSection>
       </TweaksPanel>
     </div>

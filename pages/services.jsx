@@ -1,6 +1,6 @@
 /* global React, S, WA */
 /* global ArrowIcon, ChevronIcon */
-/* global InstagramIcon, WhatsAppIcon, FacebookIcon, GoogleMapsIcon, TikTokIcon, WebIcon */
+/* global InstagramIcon, WhatsAppIcon, FacebookIcon, GoogleIcon, TikTokIcon, WebIcon */
 /* global PlatformCard, CtaRow, PageHero */
 const { useState, useEffect, useRef, useCallback } = React;
 
@@ -78,12 +78,12 @@ function VideoCarousel() {
 }
 
 const platformIcons = [
-  <InstagramIcon  size={44} />,
-  <WhatsAppIcon   size={44} />,
-  <TikTokIcon     size={44} />,
-  <FacebookIcon   size={44} />,
-  <GoogleMapsIcon size={44} />,
-  <WebIcon        size={44} />
+  <InstagramIcon size={44} />,
+  <WhatsAppIcon  size={44} />,
+  <TikTokIcon    size={44} />,
+  <FacebookIcon  size={44} />,
+  <GoogleIcon    size={44} />,
+  <WebIcon       size={44} />
 ];
 
 function ServicesPage({ t }) {
@@ -129,13 +129,8 @@ function ServicesPage({ t }) {
 
       {active && <PlatformModal data={platforms[active.idx]} closing={active.closing} onClose={closeModal} />}
 
-      {/* VÍDEOS */}
+      {/* CTA */}
       <section className="inner-page inner-page--alt">
-        <div className="audience__head" data-reveal>
-          <div className="audience__eyebrow"><span>{S.services.videos.eyebrow}</span></div>
-          <h2 className="audience__title">{S.services.videos.title}</h2>
-        </div>
-        <VideoCarousel />
         <CtaRow ctaStyle={t.ctaStyle} />
       </section>
     </>

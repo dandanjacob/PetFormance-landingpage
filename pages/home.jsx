@@ -1,6 +1,6 @@
 /* global React, S, WA */
 /* global AnimatedLogo, BenefitCard, AudienceCard, AudienceModal, CtaRow */
-/* global RocketIcon, StarIcon, TrophyIcon, PawIcon, ClinicIcon, HospitalIcon, HouseCallIcon, SpecialtyIcon, StoreIcon, ArrowIcon */
+/* global RocketIcon, StarIcon, TrophyIcon, PawIcon, ArrowIcon */
 const { useState, useEffect, useRef, useCallback } = React;
 
 function HomePage({ t }) {
@@ -29,7 +29,13 @@ function HomePage({ t }) {
   }, []);
   useEffect(() => () => clearTimeout(closeTimer.current), []);
 
-  const audienceIcons = [<ClinicIcon />, <HospitalIcon />, <HouseCallIcon />, <SpecialtyIcon />, <StoreIcon />];
+  const audienceIcons = [
+    <img src="assets/clinica-veterinaria.png" alt="" style={{width:"44px",height:"44px",objectFit:"contain"}} />,
+    <img src="assets/hospital.png"            alt="" style={{width:"44px",height:"44px",objectFit:"contain"}} />,
+    <img src="assets/casa.png"                alt="" style={{width:"44px",height:"44px",objectFit:"contain"}} />,
+    <img src="assets/especialista.png"        alt="" style={{width:"44px",height:"44px",objectFit:"contain"}} />,
+    <img src="assets/loja-pet.png"            alt="" style={{width:"44px",height:"44px",objectFit:"contain"}} />,
+  ];
   const audiences = S.audience.cards.map((card, i) => ({ ...card, icon: audienceIcons[i] }));
 
   return (
@@ -53,33 +59,18 @@ function HomePage({ t }) {
       {/* BENEFIT CARDS */}
       <section className="benefits" data-screen-label="03 Home · Benefícios">
         <BenefitCard data-reveal delay={0}
-          icon={<RocketIcon size={108} strokeWidth={2.4} />}
-          title={S.benefits[0].title} body={S.benefits[0].body} />
-        <BenefitCard featured data-reveal style={{"--reveal-delay":"0.15s"}} delay={0.3}
-          icon={<div className="stars-row">{[0,1,2,3,4].map(i => <StarIcon key={i} size={42} />)}</div>}
+          icon={<img src="assets/5-estrelas.png" alt="" style={{width:"108px",objectFit:"contain"}} />}
           title={S.benefits[1].title} body={S.benefits[1].body} />
+        <BenefitCard featured data-reveal style={{"--reveal-delay":"0.15s"}} delay={0.3}
+          icon={<img src="assets/foguete.png" alt="" style={{width:"108px",objectFit:"contain"}} />}
+          title={S.benefits[0].title} body={S.benefits[0].body} />
         <BenefitCard data-reveal style={{"--reveal-delay":"0.3s"}} delay={0.6}
-          icon={<TrophyIcon size={108} strokeWidth={2.4} />}
+          icon={<img src="assets/trofeu.png" alt="" style={{width:"108px",objectFit:"contain"}} />}
           title={S.benefits[2].title} body={S.benefits[2].body} />
       </section>
 
       {/* CTA 1 */}
       <CtaRow ctaStyle={t.ctaStyle} hint />
-
-      {/* STATS */}
-      {t.showStats &&
-        <section className="stats" aria-label="Indicadores" data-reveal>
-          {S.stats.map((stat, i) => (
-            <React.Fragment key={i}>
-              {i > 0 && <div className="stat__sep" />}
-              <div className="stat">
-                <div className="stat__num">{stat.number}{stat.suffix && <span>{stat.suffix}</span>}</div>
-                <div className="stat__lbl">{stat.label}</div>
-              </div>
-            </React.Fragment>
-          ))}
-        </section>
-      }
 
       {/* QUEM ATENDEMOS */}
       <section className="audience" data-screen-label="04 Home · Quem atendemos">

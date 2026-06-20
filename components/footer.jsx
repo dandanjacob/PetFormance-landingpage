@@ -16,10 +16,9 @@ function Footer({ onNavigate }) {
       <div className="foot__cols">
         <div>
           <h4>{S.footer.nav_heading}</h4>
-          <a href="#home"        onClick={(e) => go(e, "home",     "#home")}>{S.nav.home}</a>
-          <a href="#sobre"       onClick={(e) => go(e, "about",    "#sobre")}>{S.nav.about}</a>
-          <a href="#servicos"    onClick={(e) => go(e, "services", "#servicos")}>{S.nav.services}</a>
-          <a href="#resultados"  onClick={(e) => go(e, "results",  "#resultados")}>{S.nav.results}</a>
+          <a href="#home"     onClick={(e) => go(e, "home",     "#home")}>{S.nav.home}</a>
+          <a href="#sobre"    onClick={(e) => go(e, "about",    "#sobre")}>{S.nav.about}</a>
+          <a href="#servicos" onClick={(e) => go(e, "services", "#servicos")}>{S.nav.services}</a>
         </div>
         <div>
           <h4>{S.footer.contact_heading}</h4>

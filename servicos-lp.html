@@ -116,7 +116,7 @@
 
   p:last-child { margin-bottom: 0; }
 
-  ol {
+  ol, ul {
     padding-left: 20px;
     margin: 0 0 14px;
     color: #2A2A2A;
@@ -129,8 +129,121 @@
     font-weight: 600;
   }
 
+  /* FAQ */
+  .faq { display: flex; flex-direction: column; gap: 16px; }
+
+  .faq__item {
+    border: 1px solid #D8D8D8;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .faq__q {
+    width: 100%;
+    background: #F5F5F5;
+    border: none;
+    padding: 16px 20px;
+    text-align: left;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    color: #2A2A2A;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    line-height: 1.45;
+  }
+
+  .faq__q:hover { background: #EEEEEE; }
+
+  .faq__q-arrow {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    color: #888;
+    transition: transform .22s;
+  }
+
+  .faq__item.is-open .faq__q-arrow { transform: rotate(180deg); }
+
+  .faq__a {
+    display: none;
+    padding: 16px 20px 20px;
+    border-top: 1px solid #E4E4E4;
+    background: #fff;
+  }
+
+  .faq__item.is-open .faq__a { display: block; }
+
+  .faq__a p { font-size: 15px; color: #444; margin: 0 0 12px; }
+  .faq__a p:last-child { margin-bottom: 0; }
+
+  .faq__a ul { margin: 8px 0 12px; color: #444; }
+  .faq__a ul li { margin-bottom: 6px; }
+
+  /* Dúvida form */
+  .doubt {
+    margin-top: 52px;
+    padding: 28px 28px 32px;
+    background: #fff;
+    border: 1px solid #D8D8D8;
+    border-radius: 12px;
+  }
+
+  .doubt__title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2A2A2A;
+    margin: 0 0 6px;
+  }
+
+  .doubt__sub {
+    font-size: 14px;
+    color: #777;
+    margin: 0 0 16px;
+  }
+
+  .doubt__textarea {
+    width: 100%;
+    min-height: 96px;
+    border: 1px solid #CACACA;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: inherit;
+    font-size: 15px;
+    color: #2A2A2A;
+    background: #FAFAFA;
+    resize: vertical;
+    outline: none;
+    transition: border-color .18s;
+  }
+
+  .doubt__textarea:focus { border-color: #1F8FD4; background: #fff; }
+
+  .doubt__btn {
+    margin-top: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #25D366;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 20px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity .18s;
+  }
+
+  .doubt__btn:hover { opacity: 0.88; }
+
   @media (max-width: 600px) {
     .doc { padding: 48px 20px 80px; }
+    .doubt { padding: 20px 18px 24px; }
   }
 </style>
 </head>
@@ -144,21 +257,6 @@
   <p class="doc__intro">Descrição do escopo de cada serviço oferecido pela PetFormance e como solicitar orçamento.</p>
 
   <hr />
-
-  <div class="section">
-    <p class="section__title">Serviços de Construção e Organização de Redes Sociais</p>
-    <p class="section__pending">Descrição em breve.</p>
-  </div>
-
-  <div class="section">
-    <p class="section__title">Serviços de Produção Audiovisual</p>
-    <p class="section__pending">Descrição em breve.</p>
-  </div>
-
-  <div class="section">
-    <p class="section__title">Serviços de Acompanhamento de Rede Social e Gestão de Pessoas</p>
-    <p class="section__pending">Descrição em breve.</p>
-  </div>
 
   <div class="section section--lp">
     <p class="section__title">Serviços de Produção de Landing Page</p>
@@ -193,6 +291,79 @@
 
   </div>
 
+  <hr />
+
+  <div class="section">
+    <p class="section__title">O que NÃO está incluído nos serviços</p>
+
+    <div class="faq">
+
+      <div class="faq__item">
+        <button class="faq__q" onclick="toggleFaq(this)" type="button">
+          A PetFormance responde DMs, comentários ou mensagens dos seguidores do cliente?
+          <svg class="faq__q-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq__a">
+          <p>Não. O atendimento ao cliente nas redes sociais — seja por direct, comentários ou qualquer outro canal — é de responsabilidade exclusiva do cliente ou da equipe dele.</p>
+        </div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__q" onclick="toggleFaq(this)" type="button">
+          A PetFormance se responsabiliza pela criação dos Stories do Instagram?
+          <svg class="faq__q-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq__a">
+          <p>A PetFormance não realiza a publicação de Stories. Esse canal funciona melhor como uma narrativa viva do dia a dia — bastidores, atendimentos, momentos reais — que só quem está no local consegue capturar com autenticidade.</p>
+          <p>Nossa função é fornecer as artes, orientar a estratégia e auxiliar na criação, para que o cliente publique com confiança e de forma consistente.</p>
+        </div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__q" onclick="toggleFaq(this)" type="button">
+          A PetFormance atua como equipe de vendas do cliente?
+          <svg class="faq__q-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq__a">
+          <p>Não. A PetFormance é uma agência de marketing — nosso trabalho é construir presença, autoridade e demanda. Converter esse interesse em venda é função da equipe comercial do próprio cliente.</p>
+          <p>A diferença na prática:</p>
+          <ul>
+            <li><strong>Marketing</strong> — atrai, educa e gera interesse no público certo</li>
+            <li><strong>Equipe de vendas</strong> — aborda, negocia e fecha o cliente</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="doubt">
+      <p class="doubt__title">Você tem alguma dúvida?</p>
+      <p class="doubt__sub">Não encontrou o que precisava? Escreva sua pergunta abaixo e a gente responde pelo WhatsApp.</p>
+      <textarea class="doubt__textarea" id="doubt-input" placeholder="Digite sua dúvida aqui…"></textarea>
+      <br />
+      <button class="doubt__btn" onclick="sendDoubt()" type="button">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.38 1.26 4.8L2.05 22l5.37-1.41c1.37.74 2.93 1.16 4.62 1.16 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m0 1.67c4.54 0 8.24 3.7 8.24 8.24s-3.7 8.24-8.24 8.24c-1.56 0-3.01-.43-4.26-1.19l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.19-4.34c0-4.54 3.7-8.24 8.24-8.24M8.53 7.33c-.16 0-.43.06-.66.31-.22.25-.87.86-.87 2.07s.89 2.39 1.01 2.56c.12.17 1.75 2.67 4.23 3.73.59.27 1.05.42 1.41.53.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.07-.1-.23-.16-.48-.27-.25-.12-1.47-.73-1.7-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.78.97-.15.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23a7.47 7.47 0 0 1-1.38-1.71c-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43l-.48-.01z"/></svg>
+        Enviar pelo WhatsApp
+      </button>
+    </div>
+  </div>
+
 </main>
+
+<script>
+  function toggleFaq(btn) {
+    var item = btn.closest('.faq__item');
+    var isOpen = item.classList.contains('is-open');
+    document.querySelectorAll('.faq__item.is-open').forEach(function(el) { el.classList.remove('is-open'); });
+    if (!isOpen) item.classList.add('is-open');
+  }
+
+  function sendDoubt() {
+    var question = document.getElementById('doubt-input').value.trim();
+    if (!question) { document.getElementById('doubt-input').focus(); return; }
+    var msg = 'Olá PetFormance! Estava lendo sobre os serviços de vocês e tive uma dúvida que não consegui esclarecer com o que li na documentação:\n\n- ' + question + '\n\nObrigado!';
+    window.open('https://wa.me/5527998846480?text=' + encodeURIComponent(msg), '_blank');
+  }
+</script>
 </body>
 </html>

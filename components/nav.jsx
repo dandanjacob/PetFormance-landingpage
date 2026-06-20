@@ -8,8 +8,7 @@ function Nav({ currentPage, onNavigate }) {
   const links = [
     { key: "home",     label: S.nav.home,     hash: "#home" },
     { key: "about",    label: S.nav.about,    hash: "#sobre" },
-    { key: "services", label: S.nav.services, hash: "#servicos" },
-    { key: "results",  label: S.nav.results,  hash: "#resultados" }
+    { key: "services", label: S.nav.services, hash: "#servicos" }
   ];
 
   function go(e, key, hash) {
