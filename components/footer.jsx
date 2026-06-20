@@ -29,8 +29,11 @@ function Footer({ onNavigate }) {
           <a href="https://www.instagram.com/petformanceagency/" target="_blank" rel="noopener noreferrer">{S.footer.instagram}</a>
         </div>
         <div>
-          <h4>Serviços</h4>
-          <a href="servicos-lp.html" target="_blank" rel="noopener noreferrer">Criação de Landing Page</a>
+          <h4>Dúvidas</h4>
+          <a href="servicos-lp.html#landing-page" target="_blank" rel="noopener noreferrer">Criação de Landing Page</a>
+          <a href="servicos-lp.html#nao-incluido" target="_blank" rel="noopener noreferrer">O que não está incluído</a>
+          <a href="servicos-lp.html#orcamento" target="_blank" rel="noopener noreferrer">Orçamento</a>
+          <a href="servicos-lp.html#duvidas" target="_blank" rel="noopener noreferrer">Tire sua dúvida</a>
         </div>
       </div>
       <div className="foot__legal">© {new Date().getFullYear()} {S.footer.legal}</div>

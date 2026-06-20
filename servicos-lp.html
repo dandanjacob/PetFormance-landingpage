@@ -252,13 +252,13 @@
 
   <a class="doc__back" href="index.html">← Voltar ao site</a>
 
-  <p class="doc__meta">PetFormance · Documento de Serviços</p>
-  <h1>Nossos Serviços</h1>
-  <p class="doc__intro">Descrição do escopo de cada serviço oferecido pela PetFormance e como solicitar orçamento.</p>
+  <p class="doc__meta">PetFormance · Informações e Dúvidas</p>
+  <h1>Serviços e Dúvidas Frequentes</h1>
+  <p class="doc__intro">Escopo dos nossos serviços, o que não está incluído e um espaço para você tirar qualquer dúvida.</p>
 
   <hr />
 
-  <div class="section section--lp">
+  <div id="landing-page" class="section section--lp">
     <p class="section__title">Serviços de Produção de Landing Page</p>
 
     <p class="notice">Este serviço é executado por um parceiro técnico externo e comercializado pela PetFormance. Todos os contatos e alinhamentos são realizados diretamente conosco.</p>
@@ -293,8 +293,10 @@
 
   <hr />
 
-  <div class="section">
-    <p class="section__title">O que NÃO está incluído nos serviços</p>
+  <div id="nao-incluido" class="section">
+    <p class="section__title">O que não está incluído nos serviços</p>
+
+    <p class="notice">Transparência faz parte do nosso jeito de trabalhar. Veja abaixo o que fica fora do escopo para que não haja surpresas.</p>
 
     <div class="faq">
 
@@ -335,17 +337,33 @@
       </div>
 
     </div>
+  </div>
 
-    <div class="doubt">
-      <p class="doubt__title">Você tem alguma dúvida?</p>
-      <p class="doubt__sub">Não encontrou o que precisava? Escreva sua pergunta abaixo e a gente responde pelo WhatsApp.</p>
-      <textarea class="doubt__textarea" id="doubt-input" placeholder="Digite sua dúvida aqui…"></textarea>
-      <br />
-      <button class="doubt__btn" onclick="sendDoubt()" type="button">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.38 1.26 4.8L2.05 22l5.37-1.41c1.37.74 2.93 1.16 4.62 1.16 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m0 1.67c4.54 0 8.24 3.7 8.24 8.24s-3.7 8.24-8.24 8.24c-1.56 0-3.01-.43-4.26-1.19l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.19-4.34c0-4.54 3.7-8.24 8.24-8.24M8.53 7.33c-.16 0-.43.06-.66.31-.22.25-.87.86-.87 2.07s.89 2.39 1.01 2.56c.12.17 1.75 2.67 4.23 3.73.59.27 1.05.42 1.41.53.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.07-.1-.23-.16-.48-.27-.25-.12-1.47-.73-1.7-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.78.97-.15.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23a7.47 7.47 0 0 1-1.38-1.71c-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43l-.48-.01z"/></svg>
-        Enviar pelo WhatsApp
-      </button>
-    </div>
+  <hr />
+
+  <div id="orcamento" class="section">
+    <p class="section__title">Orçamento</p>
+
+    <p class="notice">Os valores variam conforme o escopo de cada projeto e são definidos após uma conversa inicial. Não trabalhamos com tabelas fixas — cada proposta é personalizada.</p>
+
+    <p>Para agilizar o atendimento, compartilhe uma breve descrição do seu negócio, os serviços de interesse, seus objetivos principais e o prazo desejado para início. Respondemos em menos de 24h úteis.</p>
+
+    <p><a href="https://wa.me/5527998846480" target="_blank" rel="noopener noreferrer">Solicitar orçamento pelo WhatsApp</a></p>
+  </div>
+
+  <hr />
+
+  <div id="duvidas" class="section">
+    <p class="section__title">Tire sua dúvida</p>
+
+    <p class="notice">Não encontrou o que precisava? Escreva sua pergunta abaixo e a gente responde pelo WhatsApp.</p>
+
+    <textarea class="doubt__textarea" id="doubt-input" placeholder="Digite sua dúvida aqui…"></textarea>
+    <br />
+    <button class="doubt__btn" onclick="sendDoubt()" type="button">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.38 1.26 4.8L2.05 22l5.37-1.41c1.37.74 2.93 1.16 4.62 1.16 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m0 1.67c4.54 0 8.24 3.7 8.24 8.24s-3.7 8.24-8.24 8.24c-1.56 0-3.01-.43-4.26-1.19l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.19-4.34c0-4.54 3.7-8.24 8.24-8.24M8.53 7.33c-.16 0-.43.06-.66.31-.22.25-.87.86-.87 2.07s.89 2.39 1.01 2.56c.12.17 1.75 2.67 4.23 3.73.59.27 1.05.42 1.41.53.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.07-.1-.23-.16-.48-.27-.25-.12-1.47-.73-1.7-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.78.97-.15.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23a7.47 7.47 0 0 1-1.38-1.71c-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43l-.48-.01z"/></svg>
+      Enviar pelo WhatsApp
+    </button>
   </div>
 
 </main>
