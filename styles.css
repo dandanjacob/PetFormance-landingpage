@@ -2130,10 +2130,10 @@ button {
 /* ============ 404 ============ */
 .nf {
   display: grid;
-  place-items: center;
-  min-height: 70vh;
-  padding: 96px 24px;
-  margin-bottom: 140px;
+  justify-items: center;
+  align-content: center;
+  min-height: 60vh;
+  padding: 100px 24px 160px;
   text-align: center;
   position: relative;
   z-index: 1;
