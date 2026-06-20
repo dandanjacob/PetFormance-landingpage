@@ -2129,21 +2129,17 @@ button {
 
 /* ============ 404 ============ */
 .nf {
-  width: 100%;
-  min-height: calc(100svh - 72px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 80px 32px 120px;
+  min-height: 72vh;
+  padding: 100px 24px 200px;
   text-align: center;
   position: relative;
   z-index: 1;
 }
 
 .nf__content {
-  width: 100%;
   max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
