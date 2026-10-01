@@ -1,10 +1,8 @@
 // Analytics do central (dandanjacob/central) — reporta acessos, tempo de
 // permanência e cliques em CTAs pro painel em central.dandanjacob.com.
-// Mandado sempre sob o domínio de teste "petformance-teste.dandanjacob.com"
-// (já cadastrado no central), independente do host real da página.
 (function () {
   var API    = 'https://api.central.dandanjacob.com';
-  var DOMAIN = 'petformance-teste.dandanjacob.com';
+  var DOMAIN = 'petformanceagency.com.br';
 
   var accessId  = null;
   var startedAt = Date.now();
